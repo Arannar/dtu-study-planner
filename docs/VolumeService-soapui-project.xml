@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3bad9fde-3fd1-42a1-a2b6-918e6afe0078" activeEnvironment="Default" name="VolumeService" resourceRoot="" soapui-version="5.7.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="46f2e0d5-a84a-4e78-8a02-4ea88576eb9c" wsaVersion="NONE" name="BasicHttpBinding_IVolumeService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_IVolumeService" soapVersion="1_1" anonymous="optional" definition="https://sdb.dtu.dk/VolumeService/VolumeService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://sdb.dtu.dk/VolumeService/VolumeService.svc?wsdl"><con:part><con:url>https://sdb.dtu.dk/VolumeService/VolumeService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="VolumeService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VolumeService"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVolumeService_GetVolumes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVolumes"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetVolumes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVolumesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetEducationsInVolume_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEducationsInVolume"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetEducationsInVolume_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEducationsInVolumeResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetEducationsInVolumeDraft_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEducationsInVolumeDraft"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetEducationsInVolumeDraft_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEducationsInVolumeDraftResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetGeneralViewsInVolume_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneralViewsInVolume"/>
+  </wsdl:message>
+  <wsdl:message name="IVolumeService_GetGeneralViewsInVolume_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneralViewsInVolumeResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="IVolumeService">
+    <wsdl:operation name="GetVolumes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolumeService/GetVolumes" message="tns:IVolumeService_GetVolumes_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolumeService/GetVolumesResponse" message="tns:IVolumeService_GetVolumes_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetEducationsInVolume">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolumeService/GetEducationsInVolume" message="tns:IVolumeService_GetEducationsInVolume_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolumeService/GetEducationsInVolumeResponse" message="tns:IVolumeService_GetEducationsInVolume_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetEducationsInVolumeDraft">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolumeService/GetEducationsInVolumeDraft" message="tns:IVolumeService_GetEducationsInVolumeDraft_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolumeService/GetEducationsInVolumeDraftResponse" message="tns:IVolumeService_GetEducationsInVolumeDraft_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralViewsInVolume">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVolumeService/GetGeneralViewsInVolume" message="tns:IVolumeService_GetGeneralViewsInVolume_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVolumeService/GetGeneralViewsInVolumeResponse" message="tns:IVolumeService_GetGeneralViewsInVolume_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IVolumeService" type="tns:IVolumeService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetVolumes">
+      <soap:operation soapAction="http://tempuri.org/IVolumeService/GetVolumes" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEducationsInVolume">
+      <soap:operation soapAction="http://tempuri.org/IVolumeService/GetEducationsInVolume" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEducationsInVolumeDraft">
+      <soap:operation soapAction="http://tempuri.org/IVolumeService/GetEducationsInVolumeDraft" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralViewsInVolume">
+      <soap:operation soapAction="http://tempuri.org/IVolumeService/GetGeneralViewsInVolume" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VolumeService">
+    <wsdl:port name="BasicHttpBinding_IVolumeService" binding="tns:BasicHttpBinding_IVolumeService">
+      <soap:address location="https://sdb.dtu.dk/VolumeService/VolumeService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/">
+  <xs:import schemaLocation="http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VolumeService"/>
+  <xs:element name="GetVolumes">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVolumesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVolumesResult" nillable="true" type="q1:ArrayOfVolume" xmlns:q1="http://schemas.datacontract.org/2004/07/VolumeService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEducationsInVolume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEducationsInVolumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetEducationsInVolumeResult" nillable="true" type="q2:ArrayOfEducation" xmlns:q2="http://schemas.datacontract.org/2004/07/VolumeService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEducationsInVolumeDraft">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEducationsInVolumeDraftResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetEducationsInVolumeDraftResult" nillable="true" type="q3:ArrayOfEducation" xmlns:q3="http://schemas.datacontract.org/2004/07/VolumeService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralViewsInVolume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralViewsInVolumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetGeneralViewsInVolumeResult" nillable="true" type="q4:ArrayOfGeneralView" xmlns:q4="http://schemas.datacontract.org/2004/07/VolumeService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd2</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VolumeService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/VolumeService">
+  <xs:complexType name="ArrayOfVolume">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Volume" nillable="true" type="tns:Volume"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVolume" nillable="true" type="tns:ArrayOfVolume"/>
+  <xs:complexType name="Volume">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Active" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="Current" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="Editable" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="Year" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Volume" nillable="true" type="tns:Volume"/>
+  <xs:complexType name="ArrayOfEducation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Education" nillable="true" type="tns:Education"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEducation" nillable="true" type="tns:ArrayOfEducation"/>
+  <xs:complexType name="Education">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int"/>
+      <xs:element minOccurs="0" name="Lines" nillable="true" type="tns:ArrayOfLine"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="tns:LanguageItem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Education" nillable="true" type="tns:Education"/>
+  <xs:complexType name="ArrayOfLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Line" nillable="true" type="tns:Line"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLine" nillable="true" type="tns:ArrayOfLine"/>
+  <xs:complexType name="Line">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="IsInDanish" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="IsInEnglish" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="tns:LanguageItem"/>
+      <xs:element minOccurs="0" name="PopularTitle" nillable="true" type="tns:LanguageItem"/>
+      <xs:element minOccurs="0" name="ShortTitle" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Line" nillable="true" type="tns:Line"/>
+  <xs:complexType name="LanguageItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Danish" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="English" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LanguageItem" nillable="true" type="tns:LanguageItem"/>
+  <xs:complexType name="ArrayOfGeneralView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GeneralView" nillable="true" type="tns:GeneralView"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGeneralView" nillable="true" type="tns:ArrayOfGeneralView"/>
+  <xs:complexType name="GeneralView">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Guid" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="tns:LanguageItem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GeneralView" nillable="true" type="tns:GeneralView"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/VolumeService/VolumeService.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://sdb.dtu.dk/VolumeService/VolumeService.svc</con:endpoint></con:endpoints><con:operation id="f328f07c-46f5-43c5-9778-26b14683c837" isOneWay="false" action="http://tempuri.org/IVolumeService/GetEducationsInVolume" name="GetEducationsInVolume" bindingOperationName="GetEducationsInVolume" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="27305aaf-e2bc-4a5d-bd4e-c84d5dc1f56f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VolumeService/VolumeService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetEducationsInVolume>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+      </tem:GetEducationsInVolume>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVolumeService/GetEducationsInVolume"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8722fb8e-60ae-4a2c-aaa7-8fdedd52619c" isOneWay="false" action="http://tempuri.org/IVolumeService/GetEducationsInVolumeDraft" name="GetEducationsInVolumeDraft" bindingOperationName="GetEducationsInVolumeDraft" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e0b6fe2b-ce58-4dbc-8185-9f6bff8541e1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VolumeService/VolumeService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetEducationsInVolumeDraft>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+      </tem:GetEducationsInVolumeDraft>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVolumeService/GetEducationsInVolumeDraft"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f64b562f-042c-46ed-be18-d9ce0735c647" isOneWay="false" action="http://tempuri.org/IVolumeService/GetGeneralViewsInVolume" name="GetGeneralViewsInVolume" bindingOperationName="GetGeneralViewsInVolume" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0dde2e6a-eda4-4ec3-872f-348344a12e36" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VolumeService/VolumeService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetGeneralViewsInVolume>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+      </tem:GetGeneralViewsInVolume>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVolumeService/GetGeneralViewsInVolume"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="60aab99e-9b55-4688-9395-d7f7bb103d9f" isOneWay="false" action="http://tempuri.org/IVolumeService/GetVolumes" name="GetVolumes" bindingOperationName="GetVolumes" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4ae2e975-8d7c-4a09-9492-eb9189701162" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VolumeService/VolumeService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetVolumes/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVolumeService/GetVolumes"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

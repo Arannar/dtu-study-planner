@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a98bc93b-1996-45fa-b580-abb30396c111" activeEnvironment="Default" name="CourseblockService_sdb" resourceRoot="" soapui-version="5.7.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="44070f95-36fd-448e-a417-399d9c587152" wsaVersion="NONE" name="BasicHttpBinding_ICourseblockService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_ICourseblockService" soapVersion="1_1" anonymous="optional" definition="https://sdb.dtu.dk/CourseblokService/CourseblockService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://sdb.dtu.dk/CourseblokService/CourseblockService.svc?wsdl"><con:part><con:url>https://sdb.dtu.dk/CourseblokService/CourseblockService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CourseblockService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICourseblockService_GetCourseblockNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseblockNames"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetCourseblockNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseblockNamesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetCourseblocksInVolume_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseblocksInVolume"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetCourseblocksInVolume_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseblocksInVolumeResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetCourseblock_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseblock"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetCourseblock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCourseblockResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetStudyleaderCourseAssociations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudyleaderCourseAssociations"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetStudyleaderCourseAssociations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudyleaderCourseAssociationsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetStudyBoxInfoByVolumeAndCourseCodes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudyBoxInfoByVolumeAndCourseCodes"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetStudyBoxInfoByVolumeAndCourseCodes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudyBoxInfoByVolumeAndCourseCodesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetStudyBoxInfoByVolumes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudyBoxInfoByVolumes"/>
+  </wsdl:message>
+  <wsdl:message name="ICourseblockService_GetStudyBoxInfoByVolumes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudyBoxInfoByVolumesResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ICourseblockService">
+    <wsdl:operation name="GetCourseblockNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseblockService/GetCourseblockNames" message="tns:ICourseblockService_GetCourseblockNames_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseblockService/GetCourseblockNamesResponse" message="tns:ICourseblockService_GetCourseblockNames_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseblocksInVolume">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseblockService/GetCourseblocksInVolume" message="tns:ICourseblockService_GetCourseblocksInVolume_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseblockService/GetCourseblocksInVolumeResponse" message="tns:ICourseblockService_GetCourseblocksInVolume_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseblock">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseblockService/GetCourseblock" message="tns:ICourseblockService_GetCourseblock_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseblockService/GetCourseblockResponse" message="tns:ICourseblockService_GetCourseblock_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudyleaderCourseAssociations">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseblockService/GetStudyleaderCourseAssociations" message="tns:ICourseblockService_GetStudyleaderCourseAssociations_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseblockService/GetStudyleaderCourseAssociationsResponse" message="tns:ICourseblockService_GetStudyleaderCourseAssociations_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudyBoxInfoByVolumeAndCourseCodes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumeAndCourseCodes" message="tns:ICourseblockService_GetStudyBoxInfoByVolumeAndCourseCodes_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumeAndCourseCodesResponse" message="tns:ICourseblockService_GetStudyBoxInfoByVolumeAndCourseCodes_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudyBoxInfoByVolumes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumes" message="tns:ICourseblockService_GetStudyBoxInfoByVolumes_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumesResponse" message="tns:ICourseblockService_GetStudyBoxInfoByVolumes_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICourseblockService" type="tns:ICourseblockService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCourseblockNames">
+      <soap:operation soapAction="http://tempuri.org/ICourseblockService/GetCourseblockNames" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseblocksInVolume">
+      <soap:operation soapAction="http://tempuri.org/ICourseblockService/GetCourseblocksInVolume" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourseblock">
+      <soap:operation soapAction="http://tempuri.org/ICourseblockService/GetCourseblock" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudyleaderCourseAssociations">
+      <soap:operation soapAction="http://tempuri.org/ICourseblockService/GetStudyleaderCourseAssociations" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudyBoxInfoByVolumeAndCourseCodes">
+      <soap:operation soapAction="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumeAndCourseCodes" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudyBoxInfoByVolumes">
+      <soap:operation soapAction="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumes" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CourseblockService">
+    <wsdl:port name="BasicHttpBinding_ICourseblockService" binding="tns:BasicHttpBinding_ICourseblockService">
+      <soap:address location="https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/">
+  <xs:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+  <xs:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+  <xs:element name="GetCourseblockNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="courseCode" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseblockNamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCourseblockNamesResult" nillable="true" type="q1:ArrayOfCourseblock" xmlns:q1="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseblocksInVolume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseblocksInVolumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCourseblocksInVolumeResult" nillable="true" type="q2:ArrayOfCourseblock" xmlns:q2="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseblock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCourseblockResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCourseblockResult" nillable="true" type="q3:ArrayOfstring" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudyleaderCourseAssociations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudyleaderCourseAssociationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStudyleaderCourseAssociationsResult" nillable="true" type="q4:ArrayOfStudyleaderCourseAssociation" xmlns:q4="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudyBoxInfoByVolumeAndCourseCodes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+        <xs:element minOccurs="0" name="courseCodes" nillable="true" type="q5:ArrayOfstring" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudyBoxInfoByVolumeAndCourseCodesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStudyBoxInfoByVolumeAndCourseCodesResult" nillable="true" type="q6:ArrayOfStudyBoxInfo" xmlns:q6="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudyBoxInfoByVolumes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="volumes" nillable="true" type="q7:ArrayOfint" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStudyBoxInfoByVolumesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStudyBoxInfoByVolumesResult" nillable="true" type="q8:ArrayOfStudyBoxInfo" xmlns:q8="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd2</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Studybase.CourseblockService">
+  <xs:import schemaLocation="http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+  <xs:complexType name="ArrayOfCourseblock">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Courseblock" nillable="true" type="tns:Courseblock"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCourseblock" nillable="true" type="tns:ArrayOfCourseblock"/>
+  <xs:complexType name="Courseblock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Courseblock" nillable="true" type="tns:Courseblock"/>
+  <xs:complexType name="ArrayOfStudyleaderCourseAssociation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StudyleaderCourseAssociation" nillable="true" type="tns:StudyleaderCourseAssociation"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStudyleaderCourseAssociation" nillable="true" type="tns:ArrayOfStudyleaderCourseAssociation"/>
+  <xs:complexType name="StudyleaderCourseAssociation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CourseCode" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="MatrikelId" type="xs:int"/>
+      <xs:element minOccurs="0" name="StadsCode" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StudyleaderCourseAssociation" nillable="true" type="tns:StudyleaderCourseAssociation"/>
+  <xs:complexType name="ArrayOfStudyBoxInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StudyBoxInfo" nillable="true" type="tns:StudyBoxInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStudyBoxInfo" nillable="true" type="tns:ArrayOfStudyBoxInfo"/>
+  <xs:complexType name="StudyBoxInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CourseCodes" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="Danish" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="English" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="Shown" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StudyBoxInfo" nillable="true" type="tns:StudyBoxInfo"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd3</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+  <xs:complexType name="ArrayOfint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/CourseBlokService/CourseblockService.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint></con:endpoints><con:operation id="5543ead8-8911-4048-9f6e-a78043f91d5c" isOneWay="false" action="http://tempuri.org/ICourseblockService/GetCourseblock" name="GetCourseblock" bindingOperationName="GetCourseblock" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b5d9140c-4c92-4a86-9a31-903daeb8b339" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetCourseblock>\r
+         <!--Optional:-->\r
+         <tem:id>01001</tem:id>\r
+      </tem:GetCourseblock>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICourseblockService/GetCourseblock"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f05d5d9f-b364-47b0-87da-c422521e79b8" isOneWay="false" action="http://tempuri.org/ICourseblockService/GetCourseblockNames" name="GetCourseblockNames" bindingOperationName="GetCourseblockNames" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5d5c57c0-25cd-464d-9d26-15995d5be152" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetCourseblockNames>\r
+         <!--Optional:-->\r
+         <tem:courseCode>?</tem:courseCode>\r
+         <!--Optional:-->\r
+         <tem:volume>?</tem:volume>\r
+      </tem:GetCourseblockNames>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICourseblockService/GetCourseblockNames"/></con:call></con:operation><con:operation id="55970ae6-4036-4662-939a-07b8e4bcf3c6" isOneWay="false" action="http://tempuri.org/ICourseblockService/GetCourseblocksInVolume" name="GetCourseblocksInVolume" bindingOperationName="GetCourseblocksInVolume" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9c277d48-43b8-452a-948b-3877a2aff772" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetCourseblocksInVolume>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+      </tem:GetCourseblocksInVolume>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICourseblockService/GetCourseblocksInVolume"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ebc988c1-245d-4534-807e-94845c3cb2d9" isOneWay="false" action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumeAndCourseCodes" name="GetStudyBoxInfoByVolumeAndCourseCodes" bindingOperationName="GetStudyBoxInfoByVolumeAndCourseCodes" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="29071491-7a1d-4913-949d-b47c808917fe" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetStudyBoxInfoByVolumeAndCourseCodes>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+         <!--Optional:-->\r
+         <tem:courseCodes>\r
+            <!--Zero or more repetitions:-->\r
+            <arr:string>34600</arr:string>\r
+         </tem:courseCodes>\r
+      </tem:GetStudyBoxInfoByVolumeAndCourseCodes>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumeAndCourseCodes"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d241be28-ae81-4192-bce6-dc5c89f19c9f" isOneWay="false" action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumes" name="GetStudyBoxInfoByVolumes" bindingOperationName="GetStudyBoxInfoByVolumes" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2c07c7cc-34cc-4995-8141-de4ad458a552" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetStudyBoxInfoByVolumes>\r
+         <!--Optional:-->\r
+         <tem:volumes>\r
+            <!--Zero or more repetitions:-->\r
+            <arr:int>2023</arr:int>\r
+         </tem:volumes>\r
+      </tem:GetStudyBoxInfoByVolumes>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICourseblockService/GetStudyBoxInfoByVolumes"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="7b537e8e-794b-490a-8688-3e9da703ab4c" isOneWay="false" action="http://tempuri.org/ICourseblockService/GetStudyleaderCourseAssociations" name="GetStudyleaderCourseAssociations" bindingOperationName="GetStudyleaderCourseAssociations" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="849d4816-932c-43cc-aa8c-a910f971ccaa" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/CourseBlokService/CourseblockService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetStudyleaderCourseAssociations>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+      </tem:GetStudyleaderCourseAssociations>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ICourseblockService/GetStudyleaderCourseAssociations"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

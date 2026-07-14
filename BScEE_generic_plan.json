@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "savedAt": "2026-04-01T12:57:45.959Z",
+  "volume": "2026",
+  "importedCourseCodes": [
+    "01001",
+    "02002",
+    "34600",
+    "02138",
+    "30010",
+    "01002",
+    "10060",
+    "34601",
+    "02139",
+    "34602",
+    "02402",
+    "30400",
+    "01035",
+    "22050",
+    "34721",
+    "34720",
+    "02451",
+    "26020",
+    "22051",
+    "42620",
+    "27020"
+  ],
+  "selectedPlacementByCourseCode": {
+    "10060": "B"
+  },
+  "plan": {
+    "courses": [
+      {
+        "courseCode": "01001",
+        "title": "Mathematics 1a (Polytechnical foundation)",
+        "ects": 10,
+        "semester": 1,
+        "placementOptionId": "A",
+        "placementOptionLabel": "Scheme A",
+        "timeBlocks": [
+          "E1A",
+          "E2A",
+          "E2B"
+        ]
+      },
+      {
+        "courseCode": "27020",
+        "title": "Bioengineering (Polytechnical Foundation)",
+        "ects": 5,
+        "semester": 6,
+        "timeBlocks": [
+          "F2A"
+        ]
+      },
+      {
+        "courseCode": "26020",
+        "title": "Chemistry (Polytechnical Foundation)",
+        "ects": 5,
+        "semester": 5,
+        "timeBlocks": [
+          "E1A"
+        ]
+      },
+      {
+        "courseCode": "42620",
+        "title": "Science, Technology and Society (Polytechnical Foundation)",
+        "ects": 5,
+        "semester": 5,
+        "timeBlocks": [
+          "JANUARY"
+        ]
+      },
+      {
+        "courseCode": "34721",
+        "title": "Linear control design 1",
+        "ects": 5,
+        "semester": 4,
+        "timeBlocks": [
+          "F5B"
+        ]
+      },
+      {
+        "courseCode": "01002",
+        "title": "Mathematics 1b (Polytechnical foundation)",
+        "ects": 10,
+        "semester": 2,
+        "placementOptionId": "A",
+        "placementOptionLabel": "Scheme A",
+        "timeBlocks": [
+          "F1A",
+          "F2A",
+          "F2B"
+        ]
+      },
+      {
+        "courseCode": "34720",
+        "title": "Introductory project - Electrotechnology",
+        "ects": 10,
+        "semester": 4,
+        "timeBlocks": [
+          "F2A",
+          "JUNE"
+        ]
+      },
+      {
+        "courseCode": "34602",
+        "title": "Engineering practices - Electrotechnology",
+        "ects": 5,
+        "semester": 2,
+        "timeBlocks": [
+          "JUNE"
+        ]
+      },
+      {
+        "courseCode": "22051",
+        "title": "Signals and linear systems in discrete time",
+        "ects": 5,
+        "semester": 5,
+        "timeBlocks": [
+          "E1B"
+        ]
+      },
+      {
+        "courseCode": "22050",
+        "title": "Continuous time signals and linear systems",
+        "ects": 5,
+        "semester": 4,
+        "timeBlocks": [
+          "F3A"
+        ]
+      },
+      {
+        "courseCode": "10060",
+        "title": "Physics (Polytechnical Foundation)",
+        "ects": 0,
+        "semester": 2,
+        "placementOptionId": "B",
+        "placementOptionLabel": "Scheme B",
+        "timeBlocks": [
+          "F5B"
+        ]
+      },
+      {
+        "courseCode": "10060",
+        "title": "Physics (Polytechnical Foundation)",
+        "ects": 10,
+        "semester": 3,
+        "placementOptionId": "B",
+        "placementOptionLabel": "Scheme B",
+        "timeBlocks": [
+          "E5B"
+        ]
+      },
+      {
+        "courseCode": "30400",
+        "title": "Electromagnetics",
+        "ects": 10,
+        "semester": 3,
+        "timeBlocks": [
+          "E1A",
+          "E1B"
+        ]
+      },
+      {
+        "courseCode": "34601",
+        "title": "Electric circuits 2",
+        "ects": 5,
+        "semester": 2,
+        "timeBlocks": [
+          "F4A"
+        ]
+      },
+      {
+        "courseCode": "34600",
+        "title": "Electric circuits 1",
+        "ects": 5,
+        "semester": 1,
+        "timeBlocks": [
+          "E3A"
+        ]
+      },
+      {
+        "courseCode": "02451",
+        "title": "Introduction to Machine Learning",
+        "ects": 5,
+        "semester": 4,
+        "timeBlocks": [
+          "F4A"
+        ]
+      },
+      {
+        "courseCode": "02402",
+        "title": "Statistics (Polytechnical Foundation)",
+        "ects": 5,
+        "semester": 3,
+        "timeBlocks": [
+          "E3A"
+        ]
+      },
+      {
+        "courseCode": "02139",
+        "title": "Digital Electronics 2",
+        "ects": 5,
+        "semester": 2,
+        "timeBlocks": [
+          "F1B"
+        ]
+      },
+      {
+        "courseCode": "02002",
+        "title": "Computer Programming (Polytechnical Foundation)",
+        "ects": 5,
+        "semester": 1,
+        "timeBlocks": [
+          "E1B"
+        ]
+      },
+      {
+        "courseCode": "30010",
+        "title": "Programming Project",
+        "ects": 5,
+        "semester": 1,
+        "timeBlocks": [
+          "JANUARY"
+        ]
+      },
+      {
+        "courseCode": "02138",
+        "title": "Digital Electronics 1",
+        "ects": 5,
+        "semester": 1,
+        "timeBlocks": [
+          "E4B"
+        ]
+      },
+      {
+        "courseCode": "01035",
+        "title": "Advanced Engineering Mathematics 2",
+        "ects": 5,
+        "semester": 3,
+        "timeBlocks": [
+          "E2B"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <StudyPlannerLocalBuildRoot>$(MSBuildThisFileDirectory)artifacts/msbuild/</StudyPlannerLocalBuildRoot>
+    <BaseIntermediateOutputPath Condition="'$(StudyPlannerLocalBuildRoot)' != ''">$(StudyPlannerLocalBuildRoot)$(MSBuildProjectName)/obj/</BaseIntermediateOutputPath>
+    <BaseOutputPath Condition="'$(StudyPlannerLocalBuildRoot)' != ''">$(StudyPlannerLocalBuildRoot)$(MSBuildProjectName)/bin/</BaseOutputPath>
+  </PropertyGroup>
+</Project>

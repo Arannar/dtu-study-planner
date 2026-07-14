@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="814bf910-baea-48c5-9ae5-da0a6b881e6d" activeEnvironment="Default" name="VisualizationService" resourceRoot="" soapui-version="5.7.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="72910552-6d45-48ad-bd53-a396504db8aa" wsaVersion="NONE" name="BasicHttpBinding_IVisualizationService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_IVisualizationService" soapVersion="1_1" anonymous="optional" definition="https://sdb.dtu.dk/VisualizationService/VisualizationService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://sdb.dtu.dk/VisualizationService/VisualizationService.svc?wsdl"><con:part><con:url>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="VisualizationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Studybase.VisualizationService"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVisualizationService_GetVisualizationsInEducation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationsInEducation"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualizationsInEducation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationsInEducationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualization_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualization"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualization_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualizationByGuid_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationByGuid"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualizationByGuid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationByGuidResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualizationDraft_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationDraft"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetVisualizationDraft_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVisualizationDraftResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetGeneralVisualization_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneralVisualization"/>
+  </wsdl:message>
+  <wsdl:message name="IVisualizationService_GetGeneralVisualization_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneralVisualizationResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="IVisualizationService">
+    <wsdl:operation name="GetVisualizationsInEducation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationsInEducation" message="tns:IVisualizationService_GetVisualizationsInEducation_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationsInEducationResponse" message="tns:IVisualizationService_GetVisualizationsInEducation_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualization">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualization" message="tns:IVisualizationService_GetVisualization_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationResponse" message="tns:IVisualizationService_GetVisualization_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualizationByGuid">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationByGuid" message="tns:IVisualizationService_GetVisualizationByGuid_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationByGuidResponse" message="tns:IVisualizationService_GetVisualizationByGuid_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualizationDraft">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationDraft" message="tns:IVisualizationService_GetVisualizationDraft_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVisualizationService/GetVisualizationDraftResponse" message="tns:IVisualizationService_GetVisualizationDraft_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralVisualization">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVisualizationService/GetGeneralVisualization" message="tns:IVisualizationService_GetGeneralVisualization_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/IVisualizationService/GetGeneralVisualizationResponse" message="tns:IVisualizationService_GetGeneralVisualization_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IVisualizationService" type="tns:IVisualizationService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetVisualizationsInEducation">
+      <soap:operation soapAction="http://tempuri.org/IVisualizationService/GetVisualizationsInEducation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualization">
+      <soap:operation soapAction="http://tempuri.org/IVisualizationService/GetVisualization" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualizationByGuid">
+      <soap:operation soapAction="http://tempuri.org/IVisualizationService/GetVisualizationByGuid" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualizationDraft">
+      <soap:operation soapAction="http://tempuri.org/IVisualizationService/GetVisualizationDraft" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralVisualization">
+      <soap:operation soapAction="http://tempuri.org/IVisualizationService/GetGeneralVisualization" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VisualizationService">
+    <wsdl:port name="BasicHttpBinding_IVisualizationService" binding="tns:BasicHttpBinding_IVisualizationService">
+      <soap:address location="https://sdb.dtu.dk/VisualizationService/VisualizationService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/">
+  <xs:import schemaLocation="http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Studybase.VisualizationService"/>
+  <xs:import schemaLocation="http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+  <xs:element name="GetVisualizationsInEducation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualizationsInEducationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVisualizationsInEducationResult" nillable="true" type="q1:ArrayOfVisualization" xmlns:q1="http://schemas.datacontract.org/2004/07/Studybase.VisualizationService"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualization">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="visualizationId" type="xs:int"/>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+        <xs:element minOccurs="0" name="language" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualizationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVisualizationResult" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualizationByGuid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="visualizationGuid" type="q2:guid" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/"/>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+        <xs:element minOccurs="0" name="language" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualizationByGuidResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVisualizationByGuidResult" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualizationDraft">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="visualizationId" type="xs:int"/>
+        <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+        <xs:element minOccurs="0" name="language" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVisualizationDraftResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVisualizationDraftResult" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralVisualization">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="visualizationGuid" nillable="true" type="xs:string"/>
+        <xs:element minOccurs="0" name="volume" type="xs:int"/>
+        <xs:element minOccurs="0" name="language" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGeneralVisualizationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetGeneralVisualizationResult" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd2</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Studybase.VisualizationService" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Studybase.VisualizationService">
+  <xs:import schemaLocation="http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+  <xs:complexType name="ArrayOfVisualization">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Visualization" nillable="true" type="tns:Visualization"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVisualization" nillable="true" type="tns:ArrayOfVisualization"/>
+  <xs:complexType name="Visualization">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Guid" type="ser:guid"/>
+      <xs:element minOccurs="0" name="Id" type="xs:int"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="tns:LanguageItem"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Visualization" nillable="true" type="tns:Visualization"/>
+  <xs:complexType name="LanguageItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Danish" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="English" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LanguageItem" nillable="true" type="tns:LanguageItem"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://sdb.dtu.dk/VisualizationService/VisualizationService.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc</con:endpoint></con:endpoints><con:operation id="5a09f127-686c-4ea8-94e1-e85f6400e628" isOneWay="false" action="http://tempuri.org/IVisualizationService/GetGeneralVisualization" name="GetGeneralVisualization" bindingOperationName="GetGeneralVisualization" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e1d98332-5495-4239-9091-2ae8a3c64eca" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetGeneralVisualization>\r
+         <!--Optional:-->\r
+         <tem:visualizationGuid></tem:visualizationGuid>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+         <!--Optional:-->\r
+         <tem:language>da-DK</tem:language>\r
+      </tem:GetGeneralVisualization>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVisualizationService/GetGeneralVisualization"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="49b95a15-69b3-4854-b4c0-cf0b3b20fc8d" isOneWay="false" action="http://tempuri.org/IVisualizationService/GetVisualization" name="GetVisualization" bindingOperationName="GetVisualization" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8bd2e4cd-b689-4d2b-8bbd-f9bda9531010" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetVisualization>\r
+         <!--Optional:-->\r
+         <tem:visualizationId>1</tem:visualizationId>\r
+         <!--Optional:-->\r
+         <tem:code></tem:code>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+         <!--Optional:-->\r
+         <tem:language>da-DK</tem:language>\r
+      </tem:GetVisualization>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVisualizationService/GetVisualization"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="4609d856-20af-4a3c-bb48-4b6c947eb78b" isOneWay="false" action="http://tempuri.org/IVisualizationService/GetVisualizationByGuid" name="GetVisualizationByGuid" bindingOperationName="GetVisualizationByGuid" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b5b982e2-8d87-421e-a11b-7d32ad4f6d8e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetVisualizationByGuid>\r
+         <!--Optional:-->\r
+         <tem:visualizationGuid>28484d0a-fa52-4ba4-89bd-a46a038640ed</tem:visualizationGuid>\r
+         <!--Optional:-->\r
+         <tem:code>ELEKTEK23</tem:code>\r
+         <!--Optional:-->\r
+         <tem:volume>2023</tem:volume>\r
+         <!--Optional:-->\r
+         <tem:language>da-DK</tem:language>\r
+      </tem:GetVisualizationByGuid>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVisualizationService/GetVisualizationByGuid"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="2e7fe508-ef5a-412f-b397-98333ad60607" isOneWay="false" action="http://tempuri.org/IVisualizationService/GetVisualizationDraft" name="GetVisualizationDraft" bindingOperationName="GetVisualizationDraft" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="31fd43b8-6c53-47bf-94a9-c8d093a97fdc" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetVisualizationDraft>\r
+         <!--Optional:-->\r
+         <tem:visualizationId>?</tem:visualizationId>\r
+         <!--Optional:-->\r
+         <tem:code>?</tem:code>\r
+         <!--Optional:-->\r
+         <tem:volume>?</tem:volume>\r
+         <!--Optional:-->\r
+         <tem:language>?</tem:language>\r
+      </tem:GetVisualizationDraft>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVisualizationService/GetVisualizationDraft"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c007e718-b17b-4959-ad66-8f32e73e8ca9" isOneWay="false" action="http://tempuri.org/IVisualizationService/GetVisualizationsInEducation" name="GetVisualizationsInEducation" bindingOperationName="GetVisualizationsInEducation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="638b33cb-453a-4f0e-807f-c7f1ea32fc14" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdb.dtu.dk/VisualizationService/VisualizationService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetVisualizationsInEducation>\r
+         <!--Optional:-->\r
+         <tem:id>?</tem:id>\r
+      </tem:GetVisualizationsInEducation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IVisualizationService/GetVisualizationsInEducation"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

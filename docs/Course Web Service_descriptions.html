@@ -1,0 +1,482 @@
+
+<!-- saved from url=(0052)https://kurser.dtu.dk/coursewebservicev2/course.asmx -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="alternate" type="text/xml" href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?disco">
+
+    <style type="text/css">
+    
+		BODY { color: #000000; background-color: white; font-family: Verdana; margin-left: 0px; margin-top: 0px; }
+		#content { margin-left: 30px; font-size: .70em; padding-bottom: 2em; }
+		A:link { color: #336699; font-weight: bold; text-decoration: underline; }
+		A:visited { color: #6699cc; font-weight: bold; text-decoration: underline; }
+		A:active { color: #336699; font-weight: bold; text-decoration: underline; }
+		A:hover { color: cc3300; font-weight: bold; text-decoration: underline; }
+		P { color: #000000; margin-top: 0px; margin-bottom: 12px; font-family: Verdana; }
+		pre { background-color: #e5e5cc; padding: 5px; font-family: Courier New; font-size: x-small; margin-top: -5px; border: 1px #f0f0e0 solid; }
+		td { color: #000000; font-family: Verdana; font-size: .7em; }
+		h2 { font-size: 1.5em; font-weight: bold; margin-top: 25px; margin-bottom: 10px; border-top: 1px solid #003366; margin-left: -15px; color: #003366; }
+		h3 { font-size: 1.1em; color: #000000; margin-left: -15px; margin-top: 10px; margin-bottom: 10px; }
+		ul { margin-top: 10px; margin-left: 20px; }
+		ol { margin-top: 10px; margin-left: 20px; }
+		li { margin-top: 10px; color: #000000; }
+		font.value { color: darkblue; font: bold; }
+		font.key { color: darkgreen; font: bold; }
+		font.error { color: darkred; font: bold; }
+		.heading1 { color: #ffffff; font-family: Tahoma; font-size: 26px; font-weight: normal; background-color: #003366; margin-top: 0px; margin-bottom: 0px; margin-left: -30px; padding-top: 10px; padding-bottom: 3px; padding-left: 15px; width: 105%; }
+		.button { background-color: #dcdcdc; font-family: Verdana; font-size: 1em; border-top: #cccccc 1px solid; border-bottom: #666666 1px solid; border-left: #cccccc 1px solid; border-right: #666666 1px solid; }
+		.frmheader { color: #000000; background: #dcdcdc; font-family: Verdana; font-size: .7em; font-weight: normal; border-bottom: 1px solid #dcdcdc; padding-top: 2px; padding-bottom: 2px; }
+		.frmtext { font-family: Verdana; font-size: .7em; margin-top: 8px; margin-bottom: 0px; margin-left: 32px; }
+		.frmInput { font-family: Verdana; font-size: 1em; }
+		.intro { margin-left: -15px; }
+           
+    </style>
+
+    <title>
+	Course Web Service
+</title></head>
+
+  <body>
+
+    <div id="content">
+
+      <p class="heading1">Course</p><br>
+
+      <span>
+          <p class="intro">Webservice til opslag i DTU's kursusbase.</p>
+      </span>
+
+      <span>
+
+          <p class="intro">The following operations are supported.  For a formal definition, please review the <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?WSDL">Service Description</a>. </p>
+          
+          
+              <ul>
+            
+              <li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=CourseCatalogVersions">CourseCatalogVersions</a>
+                
+                <span>
+                  <br>Returnerer årgangene beskrevet i kursusbasen.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=DraftPicker">DraftPicker</a>
+                
+                <span>
+                  <br>Søger i kladde kurser men kun i prioritet teksten.<br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetArchivedCoursesByVolumeAndDepartment">GetArchivedCoursesByVolumeAndDepartment</a>
+                
+                <span>
+                  <br>Henter liste af kurser i en arkiveret volume under et institut.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCatalogVersionSelection">GetCatalogVersionSelection</a>
+                
+                <span>
+                  <br>Returnerer de åbne årgange af kursusbasen samt deres åbnings- og lukningsdatoer.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourse">GetCourse</a>
+                
+                <span>
+                  <br>Slår et enkelt kursus op ud fra:<br>Årgangen kurset tilhører og kursuskoden <br>  fx: '01005','2006/2007'.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseByPassVolumeSettings">GetCourseByPassVolumeSettings</a>
+                
+                <span>
+                  <br>Slår et enkelt kursus op ud fra:<br>Årgangen kurset tilhører og kursuskoden og ignorer om årgangen er offentlig, kræver system token <br>  fx: '01005','2006/2007'.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseCodeStartLetters">GetCourseCodeStartLetters</a>
+                
+                <span>
+                  <br>Henter distinct liste af de første to tegn i kursuskoden
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseFromCourseId">GetCourseFromCourseId</a>
+                
+                <span>
+                  <br>Returnere det samme som SearchDtuShbByCourseCodeOrTitle, men tager et id.<br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseHoldings">GetCourseHoldings</a>
+                
+                <span>
+                  <br>Henter liste af kursusafholdelser for et givet kursus i et givet sprog.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseHoldingsById">GetCourseHoldingsById</a>
+                
+                <span>
+                  <br>Henter liste af kursusafholdelser for et givet kursus i et givet sprog.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseNewestBeforeVolume">GetCourseNewestBeforeVolume</a>
+                
+                <span>
+                  <br>Returnerer det nyeste kursus med í årgang - 'Volume' før den givet og med en given kursuskode - 'CourseCode'
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseNewestPublic">GetCourseNewestPublic</a>
+                
+                <span>
+                  <br>Returnerer det nyeste kursus med en given kursuskode.<br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseResponsibleList">GetCourseResponsibleList</a>
+                
+                <span>
+                  <br>Returnerer en liste med kursusansvarlige for et givent kursus.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseResponsiblesCoursesInOpenVolumes">GetCourseResponsiblesCoursesInOpenVolumes</a>
+                
+                <span>
+                  <br>Henter kursus titler og nummer et cwis nummer er kursusansvarlig for, kun inden for åbne årgange
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseResponsiblesCoursesInSpecificVolume">GetCourseResponsiblesCoursesInSpecificVolume</a>
+                
+                <span>
+                  <br>Returnere data til Eksamensindberetningblanket systemet.<br>Returnerer kurser et cwis nummer var ansvarlig for i en given årgang <br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseTeachersAndSuperusersList">GetCourseTeachersAndSuperusersList</a>
+                
+                <span>
+                  <br>Returnerer en liste med undervisere som de står i campusnet, matrikel ID for samtlige udgaver af et givent kursus. Hvis 'includeSuperUsers' er sat til True inkluderes og personer med rollen 'Superbruger' tildelt i CampusNet.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourseTeachersList">GetCourseTeachersList</a>
+                
+                <span>
+                  <br>Returnerer en liste med undervisere som de står i campusnet, matrikel ID for samtlige udgaver af et givent kursus.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCourselistForExamReporting">GetCourselistForExamReporting</a>
+                
+                <span>
+                  <br>Returnere data til Eksamensindberetningblanket systemet.<br>Opslaget kan laves for en given årgang af kursusbasen eller <br>en kombination af en kursusbase årgang og en kommaseperaret liste af kursusnummer og evt institut nøgle (tom eller null for at ignorer den.<br>fx '01005,01006','2006/2007'.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCoursesByCourseCodeStartingLetters">GetCoursesByCourseCodeStartingLetters</a>
+                
+                <span>
+                  <br>Henter liste af kurser med tegnene 'letters' som de første to tegn i kursuskoden
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCoursesByDepartment">GetCoursesByDepartment</a>
+                
+                <span>
+                  <br>Henter liste af kurser associeret til at givent institut(department)
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCoursesByProgrammeLevelInPreferedVolume">GetCoursesByProgrammeLevelInPreferedVolume</a>
+                
+                <span>
+                  <br>Henter liste af kurser associeret til at givent uddannelsesniveau (programmeLevel) i foretrukne årgang
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCoursesByStartingLetter">GetCoursesByStartingLetter</a>
+                
+                <span>
+                  <br>Henter liste af kurser med teget 'letter' som det første tegn i titlen på sproget 'userLang'
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCoursesTitles">GetCoursesTitles</a>
+                
+                <span>
+                  <br>Returnere data til Studyplan Report.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetCoursesWithDuration">GetCoursesWithDuration</a>
+                
+                <span>
+                  <br>Henter liste af kursuskoder for kurser med den angivet varighed.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDataForAUSReport">GetDataForAUSReport</a>
+                
+                <span>
+                  <br>Returnere data til AUS Report.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDataForEuroTeQ">GetDataForEuroTeQ</a>
+                
+                <span>
+                  <br>Slår alle EuroTeQ kurser op i en årgang.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDataForExamPlanner">GetDataForExamPlanner</a>
+                
+                <span>
+                  <br>Returnere data til ExamPlanner.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDataForGradeEntry">GetDataForGradeEntry</a>
+                
+                <span>
+                  <br>Returnere data til GradeEntry.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDataForStudyplan">GetDataForStudyplan</a>
+                
+                <span>
+                  <br>Returnere data til Studyplan Report.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDepartments">GetDepartments</a>
+                
+                <span>
+                  <br>Instituter på DTU.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDepartmentsGivenCatalog">GetDepartmentsGivenCatalog</a>
+                
+                <span>
+                  <br>Instituter på DTU for en givet årgang
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetDepartmentsResourcesInSpecificVolume">GetDepartmentsResourcesInSpecificVolume</a>
+                
+                <span>
+                  <br>Returnere data til .<br>Returnerer kurser et cwis nummer var ansvarlig for i en given årgang <br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetFrontMessage">GetFrontMessage</a>
+                
+                <span>
+                  <br>Henter kursusbasens forsidebesked.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetHTMLDescription">GetHTMLDescription</a>
+                
+                <span>
+                  <br>Returnerer en arkiveret HTML beskrivelse af kurset
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetKeyValuesByVolume">GetKeyValuesByVolume</a>
+                
+                <span>
+                  <br>Returnere nøgle værdien for en given årgang, kun de der ikke er udfaset.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetLabels">GetLabels</a>
+                
+                <span>
+                  <br>Retunerer label tekst til beskrivelse af kurser.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetOpenCatalogVersions">GetOpenCatalogVersions</a>
+                
+                <span>
+                  <br>Retunerer de årgange af kursusbasen der er åben for søgning
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetSearchValues">GetSearchValues</a>
+                
+                <span>
+                  <br>Henter søge værdierne i listerne : department, education, language og teaching-period
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetStudieBoks">GetStudieBoks</a>
+                
+                <span>
+                  <br>Retunerer de mulige værdier for i studieboksen. Årgangen er i format [2008/2009] eller [2008/2009,2009/2010]. lang er da eller en-gb.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetTeacherCoursesInCurrentAndPriorYear">GetTeacherCoursesInCurrentAndPriorYear</a>
+                
+                <span>
+                  <br>Henter kursus titler og nummer et cwis nummer er lærer for, kun inden for åbne årgange
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetTeachingHours">GetTeachingHours</a>
+                
+                <span>
+                  <br>Returnere lektionstimer for et kursus, null hvis kurset ikke har nogen og kaster en exception hvis ikke et kursus.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=GetTimeTableGroup">GetTimeTableGroup</a>
+                
+                <span>
+                  <br>Retunerer skemaplaceringer.
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=PublishedPicker">PublishedPicker</a>
+                
+                <span>
+                  <br>Søger i publiceret kurser men kun i prioritet teksten.<br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=SearchDtuShbByCourseCodeOrTitle">SearchDtuShbByCourseCodeOrTitle</a>
+                
+                <span>
+                  <br>Søgefunktion til kursushåndbogen.<br>Der søges på kursusnavn og/eller kursuskode.<br>Der angives kursusbaseversion (2011/2012) og søgetekst.<br>
+                </span>
+              </li>
+              <p>
+            
+              </p><li>
+                <a href="https://kurser.dtu.dk/coursewebservicev2/course.asmx?op=SearchDtuShb_Full">SearchDtuShb_Full</a>
+                
+                <span>
+                  <br>Søgefunktion til kursushåndbogen.<br> Angives ingen katalog version eller specifik årgang søges der på alle årgange i kursusbasen.<br>
+                                Der haves to resultat typer: <br>
+                                1) resultType = 'XMLList' : Kort beskrivelse <br> 
+                                1) resultType = 'FullXML' : Fuld beskrivelse <br><br>
+                                textStudieboksen søger over i Studiehåndbogen.
+                                
+                </span>
+              </li>
+              <p>
+            
+              </p></ul>
+            
+      </span>
+
+      
+      
+
+    <span>
+        
+    </span>
+    
+      
+
+      
+
+    
+  
+
+</div></body></html>

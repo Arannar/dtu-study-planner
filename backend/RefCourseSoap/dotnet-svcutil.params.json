@@ -1,0 +1,13 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "8.0.0",
+  "options": {
+    "inputs": [
+      "https://kurser.dtu.dk/coursewebservicev2/course.asmx?WSDL"
+    ],
+    "outputFile": "Reference.cs",
+    "serializerMode": "XmlSerializer",
+    "targetFramework": "net10.0",
+    "typeReuseMode": "All"
+  }
+}
