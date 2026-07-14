@@ -7,11 +7,23 @@ using Planner.Backend.Soap.Volumes;
 var builder = WebApplication.CreateBuilder(args);
 
 var localAppUrl = builder.Configuration["LocalApp:Url"] ?? "http://localhost:5140";
+var cloudPort = Environment.GetEnvironmentVariable("PORT");
+var isRunningInContainer = string.Equals(
+    Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER"),
+    "true",
+    StringComparison.OrdinalIgnoreCase);
+
 if (!builder.Environment.IsDevelopment() &&
     string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ASPNETCORE_URLS")) &&
     string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DOTNET_URLS")))
 {
-    builder.WebHost.UseUrls(localAppUrl);
+    var listenUrl = !string.IsNullOrWhiteSpace(cloudPort)
+        ? $"http://0.0.0.0:{cloudPort}"
+        : isRunningInContainer
+            ? "http://0.0.0.0:8080"
+            : localAppUrl;
+
+    builder.WebHost.UseUrls(listenUrl);
 }
 
 builder.Services.AddControllers();
@@ -49,6 +61,7 @@ app.UseCors("frontend");
 app.UseDefaultFiles();
 app.UseStaticFiles();
 app.MapControllers();
+app.MapGet("/healthz", () => Results.Ok(new { status = "ok" }));
 
 var staticIndexPath = Path.Combine(app.Environment.WebRootPath ?? string.Empty, "index.html");
 if (File.Exists(staticIndexPath))

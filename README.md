@@ -108,6 +108,28 @@ macOS/Linux:
 
 Packages are written to `artifacts/publish/<runtime>`.
 
+## Online Deployment
+
+The first online deployment path is a single Dockerized web app: the Docker build compiles the Svelte frontend, copies it into `backend/wwwroot`, publishes the ASP.NET Core backend, and runs the backend as the public HTTP server.
+
+Build and run locally:
+
+```powershell
+docker build -t dtu-study-planner .
+docker run --rm -p 8080:8080 dtu-study-planner
+```
+
+Then open:
+
+```text
+http://localhost:8080
+http://localhost:8080/healthz
+```
+
+For Render, create a Docker Web Service from `Arannar/dtu-study-planner`. The container listens on `8080` by default and also honors a platform-provided `PORT` environment variable. The deployed app still needs outbound internet access to DTU's public course database services.
+
+Azure Container Apps is a natural later upgrade path if the project needs stronger cloud operations, custom scaling, managed secrets, or more formal monitoring.
+
 ## API Surface
 
 - `GET /api/courses?volume=2026&codes=01001,02002`

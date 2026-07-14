@@ -9,4 +9,10 @@
   <ItemGroup>
     <ProjectReference Include="..\backend\backend.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="artifacts\**\*.cs" />
+    <Content Remove="artifacts\**\*" />
+    <None Remove="artifacts\**\*" />
+  </ItemGroup>
 </Project>

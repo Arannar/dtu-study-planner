@@ -15,6 +15,7 @@ backend/TestResults/
 
 backend.Tests/bin/
 backend.Tests/obj/
+backend.Tests/artifacts/
 backend.Tests/TestResults/
 
 frontend/.DS_Store

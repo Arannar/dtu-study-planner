@@ -32,10 +32,13 @@ public sealed class GenericStudyFlowPresetLoader : IGenericStudyFlowPresetLoader
             return false;
         }
 
-        var planPath = Path.GetFullPath(Path.Combine(_hostEnvironment.ContentRootPath, "..", GenericPlanFileName));
+        var planPath = ResolveGenericPlanPath();
         if (!File.Exists(planPath))
         {
-            _logger.LogWarning("Generic study-flow file not found at {Path}", planPath);
+            _logger.LogWarning(
+                "Generic study-flow file not found. Checked content root {ContentRoot} and app base {AppBase}",
+                _hostEnvironment.ContentRootPath,
+                AppContext.BaseDirectory);
             return false;
         }
 
@@ -70,5 +73,21 @@ public sealed class GenericStudyFlowPresetLoader : IGenericStudyFlowPresetLoader
             _logger.LogWarning(exception, "Failed to load generic plan file for {ProgrammeCode}", programmeCode);
             return false;
         }
+    }
+
+    private string ResolveGenericPlanPath()
+    {
+        var candidates = new[]
+        {
+            Path.Combine(_hostEnvironment.ContentRootPath, GenericPlanFileName),
+            Path.Combine(_hostEnvironment.ContentRootPath, "..", GenericPlanFileName),
+            Path.Combine(AppContext.BaseDirectory, GenericPlanFileName),
+            Path.Combine(AppContext.BaseDirectory, "..", GenericPlanFileName)
+        };
+
+        return candidates
+            .Select(Path.GetFullPath)
+            .FirstOrDefault(File.Exists)
+            ?? Path.GetFullPath(candidates[0]);
     }
 }
