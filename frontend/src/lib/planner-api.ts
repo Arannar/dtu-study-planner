@@ -16,8 +16,19 @@ export type ValidationContext = {
 	bucketLimits: unknown;
 };
 
+async function fetchWithTimeout(url: string, init?: RequestInit): Promise<Response> {
+	try {
+		return await fetch(url, { ...init, signal: AbortSignal.timeout(60_000) });
+	} catch (error) {
+		if (error instanceof Error && error.name === 'TimeoutError') {
+			throw new Error('The request timed out. Please try loading again.', { cause: error });
+		}
+		throw error;
+	}
+}
+
 export async function postJson<T>(path: string, body: unknown): Promise<T> {
-	const response = await fetch(`${API_BASE_URL}${path}`, {
+	const response = await fetchWithTimeout(`${API_BASE_URL}${path}`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(body)
@@ -27,19 +38,31 @@ export async function postJson<T>(path: string, body: unknown): Promise<T> {
 	return (await response.json()) as T;
 }
 
-export async function fetchCourseBatch(volume: string, codes: string[]): Promise<CoursesResponse> {
+export async function fetchCourseBatch(
+	volume: string,
+	codes: string[],
+	allowHistoricalFallback = false
+): Promise<CoursesResponse> {
 	if (!codes.length) {
 		return { courses: [], missingCourseCodes: [] };
 	}
 
 	const query = new URLSearchParams({ codes: codes.join(','), volume });
-	const response = await fetch(`${API_BASE_URL}/api/courses?${query.toString()}`);
+	if (allowHistoricalFallback) query.set('allowHistoricalFallback', 'true');
+	const response = await fetchWithTimeout(`${API_BASE_URL}/api/courses?${query.toString()}`);
+	await ensureSuccess(response);
+	return (await response.json()) as CoursesResponse;
+}
+
+export async function searchCourses(volume: string, query: string): Promise<CoursesResponse> {
+	const parameters = new URLSearchParams({ volume, query });
+	const response = await fetchWithTimeout(`${API_BASE_URL}/api/courses/search?${parameters}`);
 	await ensureSuccess(response);
 	return (await response.json()) as CoursesResponse;
 }
 
 export async function fetchProgrammes(volume: number): Promise<ProgrammeListResponse> {
-	const response = await fetch(`${API_BASE_URL}/api/programmes?volume=${volume}`);
+	const response = await fetchWithTimeout(`${API_BASE_URL}/api/programmes?volume=${volume}`);
 	await ensureSuccess(response);
 	return (await response.json()) as ProgrammeListResponse;
 }
@@ -50,7 +73,7 @@ export async function fetchProgrammeDefinition(
 	language = 'da-DK'
 ): Promise<ProgrammeDefinitionResponse> {
 	const query = new URLSearchParams({ volume: String(volume), language });
-	const response = await fetch(
+	const response = await fetchWithTimeout(
 		`${API_BASE_URL}/api/programmes/${encodeURIComponent(programmeCode)}/definition?${query.toString()}`
 	);
 	await ensureSuccess(response);
@@ -96,7 +119,7 @@ export async function fetchStudyFlow(
 	language = 'da-DK'
 ): Promise<ProgrammeStudyFlowOption> {
 	const query = new URLSearchParams({ volume: String(volume), language });
-	const response = await fetch(
+	const response = await fetchWithTimeout(
 		`${API_BASE_URL}/api/programmes/${encodeURIComponent(programmeCode)}/study-flows/${encodeURIComponent(optionId)}?${query}`
 	);
 	await ensureSuccess(response);

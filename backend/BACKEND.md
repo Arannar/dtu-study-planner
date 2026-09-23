@@ -1,6 +1,6 @@
 ## Backend Source Reference
 
-This reference covers all 35 C# source files under `backend/`, including the four generated SOAP references. Build-generated files in `obj`, `bin`, and `artifacts` are excluded. Supporting project and configuration files are listed separately below.
+This reference covers the C# source files under `backend/`, including the four generated SOAP references. Build-generated files in `obj`, `bin`, and `artifacts` are excluded. Supporting project and configuration files are listed separately below.
 
 Usage labels describe the current repository's application call paths, dependency-injection registrations, frontend requests, and test references. **Used** means reachable from startup or an exposed API, including conditional fallback paths; it does not mean every branch runs on every request. **Unused** means no application or test caller was found. Generated transport contracts can be required indirectly by serialization even when application code does not name them. These are source-inspection findings, not runtime coverage measurements.
 
@@ -30,6 +30,10 @@ The local `OpenBrowser(url, logger)` function launches the configured local URL 
 #### [`backend/Controllers/CoursesController.cs`](Controllers/CoursesController.cs) — used
 
 `CoursesController` handles `GET /api/courses`. Its constructor receives `ICourseCatalogService`, `IVolumeResolver`, and a logger. `Get(volume, codes)` resolves an omitted volume, splits and trims the comma-separated course codes, logs the request, delegates course loading to the catalogue service, and returns `CoursesResponse` with HTTP 200. The frontend calls this endpoint to import/enrich courses. An empty code list produces an empty batch rather than a full catalogue search.
+
+`GET /api/courses/search?query=learning&volume=2026` binds [`CourseSearchRequest`](Models/CourseSearchRequest.cs), resolves an omitted volume, and delegates to `ICourseCatalogService.SearchCoursesAsync`. The service trims the query and rejects blank input with HTTP 400. Exactly five ASCII digits use the SOAP `courseCode` parameter; all other queries use `searchWords` to search course text. `DtuGateway.SearchCoursesAsync` calls `SearchDtuShb_Full` with `FullXML` and the selected academic year. Results use the same `CourseSummary` parser as imports, are restricted to that year, deduplicated and sorted by code, and returned as `CoursesResponse` with an empty `missingCourseCodes` list. Search does not use historical fallback. Upstream failures return HTTP 503; zero matches return HTTP 200 with an empty course list.
+
+The frontend search basket supports selecting several results for additive import. Results retain schedule alternatives and course metadata; merely searching or changing basket selections does not change the study plan.
 
 #### [`backend/Controllers/ProgrammesController.cs`](Controllers/ProgrammesController.cs) — used
 
@@ -198,4 +202,4 @@ No handwritten C# file is intentionally unused. The obsolete embedded preset loa
 
 A live smoke test returned 21 curated-plan courses in one SOAP batch. Programme selection fetched no package HTML; one selected package imported 26 placements. A repeated three-code HTTP batch made no new SOAP request. These are observed checks, not latency guarantees.
 
-The course search currently exposes the published catalogue; the captured 2025/2026 request returned no courses. The app reports such courses as missing for that year instead of silently substituting historical data. Supporting full archived-catalogue retrieval remains separate work. View names do not guarantee importable semester data; unavailable options produce a clear response. Requirement capacities remain application defaults, and package discovery remains strongest for ELEKTEK23.
+The course search currently exposes the published catalogue; the captured 2025/2026 request returned no courses. When `/api/courses` receives `allowHistoricalFallback=true` (enabled by the frontend HoS extra info toggle), empty search batches fall back to individual `GetCourse` requests for the exact academic year. Both paths reject mismatched years, and their cache entries are separate. Without the flag, unavailable courses remain missing. View names do not guarantee importable semester data; unavailable options produce a clear response. Requirement capacities remain application defaults, and package discovery remains strongest for ELEKTEK23.

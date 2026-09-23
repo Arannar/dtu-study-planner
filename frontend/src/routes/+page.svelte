@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 	import './+page.css';
 	import {
 		DEFAULT_CODES,
+		mergeCourseSearchSelection,
 		courseMatchesQuery,
 		describeConflictCount,
 		getDisplayBlock,
@@ -12,6 +13,7 @@
 		getOddSemesterBlocks,
 		getSemesterSpecificTimeBlocks,
 		getSelectedPlacementOption,
+		getUniquePlacementOptions,
 		getSemesterIntensiveBlocks,
 		isSemesterCompatible,
 		isMultiSemesterSpringStartCourse,
@@ -34,6 +36,7 @@
 	import {
 		fetchCourseBatch as fetchCourseBatchFromApi,
 		fetchProgrammeDefinition,
+		searchCourses,
 		fetchStudyFlow,
 		fetchProgrammes,
 		validatePlacement,
@@ -94,6 +97,115 @@
 	let planValidation = $state<PlanValidationResult | null>(null);
 	let courseCodesInput = $state(DEFAULT_CODES);
 	let courseFilter = $state('');
+	let searchQuery = $state('');
+	let searchInput = $state<HTMLInputElement | null>(null);
+	let basketDialog = $state<HTMLDialogElement | null>(null);
+	let basketOpen = $state(false);
+	let basketLoading = $state(false);
+	let basketError = $state('');
+	let basketQuery = $state('');
+	let basketVolume = $state('');
+	let basketCourses = $state<CourseSummary[]>([]);
+	let basketSelections = $state<string[]>([]);
+	let basketPlacements = $state<Record<string, string>>({});
+	let searchGeneration = 0;
+
+	$effect(() => {
+		if (basketOpen && basketVolume !== volume) closeBasket();
+	});
+
+	$effect(() => {
+		if (!basketOpen) return;
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = previousOverflow;
+		};
+	});
+
+	function closeBasket() {
+		searchGeneration++;
+		basketOpen = false;
+		basketSelections = [];
+		basketPlacements = {};
+		basketDialog?.close();
+		searchInput?.focus();
+	}
+
+	async function submitSearch() {
+		const query = searchQuery.trim();
+		if (!query) {
+			searchInput?.focus();
+			return;
+		}
+		const generation = ++searchGeneration;
+		const requestedVolume = volume;
+		basketVolume = requestedVolume;
+		basketQuery = query;
+		basketSelections = [];
+		basketPlacements = {};
+		basketCourses = [];
+		basketError = '';
+		basketLoading = true;
+		basketOpen = true;
+		placementPickerCourseCode = null;
+		await tick();
+		if (generation !== searchGeneration || !basketOpen) return;
+		basketDialog?.showModal();
+		try {
+			const response = await searchCourses(requestedVolume, query);
+			if (generation !== searchGeneration || requestedVolume !== volume) return;
+			basketCourses = response.courses;
+		} catch (error) {
+			if (generation !== searchGeneration || requestedVolume !== volume) return;
+			basketError = error instanceof Error ? error.message : String(error);
+		} finally {
+			if (generation === searchGeneration) basketLoading = false;
+		}
+	}
+
+	function toggleBasketCourse(code: string) {
+		basketSelections = basketSelections.includes(code)
+			? basketSelections.filter((selected) => selected !== code)
+			: [...basketSelections, code];
+	}
+
+	function addBasketCourses() {
+		if (basketVolume !== volume || loading) return;
+		const merged = mergeCourseSearchSelection(
+			availableCourses,
+			basketCourses,
+			basketSelections,
+			basketPlacements,
+			courseCodesInput
+		);
+		if (loadedCoursesVolume !== volume || loadedCoursesWithHistoricalFallback !== showHosExtraInfo)
+			resetCourseCache(volume);
+		availableCourses = merged.courses;
+		courseCodesInput = merged.codesInput;
+		for (const course of merged.added) {
+			const code = normalizeCourseCode(course.courseCode);
+			courseCacheByCode[code] = course;
+			delete missingCourseCache[code];
+			if (course.selectedPlacementOptionId)
+				selectedPlacementByCourseCode[code] = course.selectedPlacementOptionId;
+		}
+		closeBasket();
+		setStatus('Added ' + merged.added.length + ' course(s) to the imported list.');
+	}
+
+	function handleBasketBackdrop(event: MouseEvent) {
+		if (event.target !== basketDialog || !basketDialog) return;
+		const rect = basketDialog.getBoundingClientRect();
+		if (
+			event.clientX < rect.left ||
+			event.clientX > rect.right ||
+			event.clientY < rect.top ||
+			event.clientY > rect.bottom
+		)
+			closeBasket();
+	}
+
 	let volume = $state(initialVolume);
 	let studyVolume = $state(initialVolume);
 	let status = $state('');
@@ -110,6 +222,7 @@
 	let selectedStudyFlowOptionId = $state('');
 	let loadedProgrammesVolume = $state<number | null>(null);
 	let loadedCoursesVolume = $state<string | null>(null);
+	let loadedCoursesWithHistoricalFallback = $state(false);
 	let courseCacheByCode = $state<Record<string, CourseSummary>>({});
 	let missingCourseCache = $state<Record<string, true>>({});
 	let loadPlanInput = $state<HTMLInputElement | null>(null);
@@ -270,6 +383,7 @@
 		})();
 
 		return () => {
+			searchGeneration++;
 			if (statusTimeout) {
 				clearTimeout(statusTimeout);
 			}
@@ -416,10 +530,10 @@
 	}
 
 	function resetCourseCache(nextVolume?: string) {
-		availableCourses = [];
 		courseCacheByCode = {};
 		missingCourseCache = {};
 		loadedCoursesVolume = nextVolume ?? null;
+		loadedCoursesWithHistoricalFallback = showHosExtraInfo;
 	}
 
 	function buildAvailableCoursesFromCodes(codes: string[]) {
@@ -430,7 +544,7 @@
 	}
 
 	async function fetchCourseBatch(codes: string[]) {
-		return fetchCourseBatchFromApi(volume, codes);
+		return fetchCourseBatchFromApi(volume, codes, showHosExtraInfo);
 	}
 
 	async function loadProgrammes() {
@@ -531,6 +645,9 @@
 	}
 
 	async function loadCourses() {
+		if (loading) return;
+		const requestedVolume = volume;
+		const requestedHistoricalFallback = showHosExtraInfo;
 		const codes = parseCourseCodes(courseCodesInput);
 		if (!codes.length) {
 			buildAvailableCourses([], getImportedActivities());
@@ -538,7 +655,10 @@
 			return;
 		}
 
-		if (loadedCoursesVolume !== volume) {
+		if (
+			loadedCoursesVolume !== volume ||
+			loadedCoursesWithHistoricalFallback !== showHosExtraInfo
+		) {
 			resetCourseCache(volume);
 		}
 
@@ -550,6 +670,12 @@
 		loading = true;
 		try {
 			const payload = await fetchCourseBatch(codesToFetch);
+			if (volume !== requestedVolume || showHosExtraInfo !== requestedHistoricalFallback) {
+				setStatus(
+					'Course volume changed during loading. Load courses again for the selected volume.'
+				);
+				return;
+			}
 
 			if (payload.courses.length > 0) {
 				courseCacheByCode = {
@@ -598,7 +724,10 @@
 			return [];
 		}
 
-		if (loadedCoursesVolume !== volume) {
+		if (
+			loadedCoursesVolume !== volume ||
+			loadedCoursesWithHistoricalFallback !== showHosExtraInfo
+		) {
 			resetCourseCache(volume);
 		}
 
@@ -1307,7 +1436,10 @@
 			return;
 		}
 
-		if (loadedCoursesVolume !== volume) {
+		if (
+			loadedCoursesVolume !== volume ||
+			loadedCoursesWithHistoricalFallback !== showHosExtraInfo
+		) {
 			resetCourseCache(volume);
 		}
 
@@ -1422,7 +1554,177 @@
 
 <svelte:head><title>DTU Study Planner</title></svelte:head>
 
+{#snippet catalogCard(course: CourseSummary, basket: boolean)}
+	<article
+		class:used={!basket && hasCourse(course.courseCode)}
+		class:basket-selected={basket && basketSelections.includes(course.courseCode)}
+		class:bucket-polytechnicalFoundation={isCourseBucket(course, 'polytechnicalFoundation')}
+		class:bucket-programmeSpecific={isCourseBucket(course, 'programmeSpecific')}
+		class:bucket-projects={isCourseBucket(course, 'projects')}
+		class:bucket-internship={isCourseBucket(course, 'internship')}
+		class:bucket-mandatory={isCourseBucket(course, 'mandatory')}
+		class:bucket-electives={isCourseBucket(course, 'electives')}
+		class="card"
+		draggable={!basket}
+		title={getCourseTooltip(course) || undefined}
+		ondragstart={(event) => {
+			if (!basket) dragCatalog(event, course);
+		}}
+		ondragend={clearDragState}
+	>
+		{#if basket}
+			<label class="basket-select">
+				<input
+					type="checkbox"
+					checked={basketSelections.includes(course.courseCode)}
+					disabled={hasImportedCourse(course.courseCode)}
+					onchange={() => toggleBasketCourse(course.courseCode)}
+				/>
+				<span
+					>{hasImportedCourse(course.courseCode)
+						? 'Already imported'
+						: 'Select ' + course.courseCode}</span
+				>
+			</label>
+		{:else}
+			<button
+				type="button"
+				class="catalog-card-pick-layer"
+				disabled={hasCourse(course.courseCode)}
+				aria-label={`Choose a semester for ${getCourseDisplayName(course)}`}
+				aria-haspopup="menu"
+				aria-expanded={placementPickerCourseCode === course.courseCode}
+				onclick={() => openPlacementPicker(course)}
+			></button>
+		{/if}
+		<div class="row card-header">
+			<div class="card-title-row">
+				{#if getCourseDisplayCode(course)}
+					<strong class="course-code">
+						<a
+							class="course-link"
+							href={getCourseDatabaseUrl(course.courseCode)}
+							target="_blank"
+							rel="noreferrer"
+							onclick={(event) => event.stopPropagation()}
+						>
+							{getCourseDisplayCode(course)}
+						</a>
+					</strong>
+				{/if}
+				{#if !isSyntheticActivity(course) && getUniquePlacementOptions(course).length > 1}
+					<div
+						class="placement-switch compact"
+						aria-label={`Placement selection for ${course.courseCode}`}
+					>
+						{#each getUniquePlacementOptions(course) as option (option.id)}
+							<button
+								type="button"
+								class:selected-option={((basket
+									? basketPlacements[course.courseCode]
+									: selectedPlacementByCourseCode[course.courseCode]) ??
+									course.selectedPlacementOptionId ??
+									course.placementOptions?.[0]?.id) === option.id}
+								class="placement-option compact"
+								onclick={(event) => {
+									event.stopPropagation();
+									if (basket)
+										basketPlacements = { ...basketPlacements, [course.courseCode]: option.id };
+									else updateSelectedPlacement(course.courseCode, option.id);
+								}}
+							>
+								{option.id}
+							</button>
+						{/each}
+					</div>
+				{/if}
+			</div>
+			<span>{course.ects ?? 'n/a'} ECTS</span>
+		</div>
+		<p>{course.title}</p>
+		<div class="chips">
+			{#if isSyntheticActivity(course)}
+				<span class="chip">{getActivityDescriptor(course)}</span>
+			{:else}
+				{#each sortTimeBlocks(basket ? (getSelectedPlacementOption(course, basketPlacements[course.courseCode])?.timeBlocks ?? course.timeBlocks) : shownCourseBlocks(course)) as block (block)}
+					<span class="chip">{block}</span>
+				{/each}
+			{/if}
+		</div>
+		{#if !basket && placementPickerCourseCode === course.courseCode && !hasCourse(course.courseCode)}
+			<div class="catalog-placement-popover" role="menu">
+				{#each semesters as semester (semester)}
+					<button
+						type="button"
+						role="menuitem"
+						class:current-semester={selectedSemester === semester}
+						disabled={!canPlaceCatalogCourseInSemester(course, semester)}
+						title={canPlaceCatalogCourseInSemester(course, semester)
+							? `Place in semester ${semester}`
+							: `Cannot place in semester ${semester}`}
+						onclick={(event) => {
+							event.stopPropagation();
+							void placeCourseFromPicker(course, semester);
+						}}
+					>
+						{semester}
+					</button>
+				{/each}
+			</div>
+		{/if}
+	</article>
+{/snippet}
+
 <div class="page">
+	<dialog
+		class="course-basket"
+		bind:this={basketDialog}
+		aria-labelledby="basket-title"
+		oncancel={(event) => {
+			event.preventDefault();
+			closeBasket();
+		}}
+		onclose={() => {
+			if (basketOpen && !basketDialog?.open) closeBasket();
+		}}
+		onclick={handleBasketBackdrop}
+	>
+		<div class="basket-heading">
+			<h2 id="basket-title">Course basket</h2>
+			<button
+				type="button"
+				class="remove-button basket-close"
+				aria-label="Close course basket"
+				onclick={closeBasket}>×</button
+			>
+			<p>Results for “{basketQuery}”</p>
+		</div>
+		<div class="basket-results" aria-busy={basketLoading}>
+			{#if basketLoading}
+				<p role="status">Searching courses…</p>
+			{:else if basketError}
+				<p role="alert">{basketError}</p>
+				<button type="button" onclick={() => void submitSearch()}>Retry search</button>
+			{:else if basketCourses.length === 0}
+				<p role="status">No courses found. Try another course number or search term.</p>
+			{:else}
+				<p class="basket-result-count" role="status">{basketCourses.length} courses found</p>
+				<div class="basket-grid">
+					{#each basketCourses as course (course.courseCode)}
+						{@render catalogCard(course, true)}
+					{/each}
+				</div>
+			{/if}
+		</div>
+		<div class="basket-footer">
+			<span aria-live="polite">{basketSelections.length} selected</span>
+			<button
+				type="button"
+				disabled={basketSelections.length === 0 || basketLoading || loading}
+				onclick={addBasketCourses}>Add selected courses</button
+			>
+		</div>
+	</dialog>
 	<header>
 		<p class="kicker">DTU study planner</p>
 		<h1>Plan courses across DTU semesters</h1>
@@ -1481,26 +1783,51 @@
 				</div>
 
 				<div class="import-column">
-					<label class="codes-control">
-						<span>Load course codes</span>
-						<textarea bind:value={courseCodesInput} rows="3"></textarea>
-					</label>
+					<div class="search-control">
+						<label for="course-search">Search courses</label>
+						<div class="search-input-row">
+							<input
+								id="course-search"
+								type="search"
+								bind:this={searchInput}
+								bind:value={searchQuery}
+								placeholder="Course number, title or description"
+								onkeydown={(event) => {
+									if (event.key === 'Enter') {
+										event.preventDefault();
+										void submitSearch();
+									}
+								}}
+							/>
+							<button
+								type="button"
+								disabled={!searchQuery.trim()}
+								onclick={() => void submitSearch()}>Search</button
+							>
+						</div>
+					</div>
+					<div class="codes-control">
+						<label for="course-codes">Load course codes</label>
+						<div class="codes-input-row">
+							<textarea id="course-codes" bind:value={courseCodesInput} rows="1"></textarea>
+							<button type="submit" disabled={loading}
+								>{loading ? 'Loading...' : 'Load courses'}</button
+							>
+						</div>
+					</div>
 
-					<div class="import-actions-row">
-						<button type="submit" disabled={loading}
-							>{loading ? 'Loading...' : 'Load courses'}</button
-						>
-						<label class="volume-control">
-							<span>Course volume</span>
-							<input bind:value={volume} />
-						</label>
-						{#if showHosExtraInfo}
+					{#if showHosExtraInfo}
+						<div class="import-actions-row">
+							<label class="volume-control">
+								<span>Course volume</span>
+								<input bind:value={volume} />
+							</label>
 							<label class="volume-control">
 								<span>Study volume</span>
 								<input bind:value={studyVolume} />
 							</label>
-						{/if}
-					</div>
+						</div>
+					{/if}
 				</div>
 
 				<div class="thesis-column">
@@ -1664,101 +1991,7 @@
 
 			<div class="catalog">
 				{#each filteredCourses as course (course.courseCode)}
-					<article
-						class:used={hasCourse(course.courseCode)}
-						class:bucket-polytechnicalFoundation={isCourseBucket(course, 'polytechnicalFoundation')}
-						class:bucket-programmeSpecific={isCourseBucket(course, 'programmeSpecific')}
-						class:bucket-projects={isCourseBucket(course, 'projects')}
-						class:bucket-internship={isCourseBucket(course, 'internship')}
-						class:bucket-mandatory={isCourseBucket(course, 'mandatory')}
-						class:bucket-electives={isCourseBucket(course, 'electives')}
-						class="card"
-						draggable="true"
-						title={getCourseTooltip(course) || undefined}
-						ondragstart={(event) => dragCatalog(event, course)}
-						ondragend={clearDragState}
-					>
-						<button
-							type="button"
-							class="catalog-card-pick-layer"
-							disabled={hasCourse(course.courseCode)}
-							aria-label={`Choose a semester for ${getCourseDisplayName(course)}`}
-							aria-haspopup="menu"
-							aria-expanded={placementPickerCourseCode === course.courseCode}
-							onclick={() => openPlacementPicker(course)}
-						></button>
-						<div class="row card-header">
-							<div class="card-title-row">
-								{#if getCourseDisplayCode(course)}
-									<strong class="course-code">
-										<a
-											class="course-link"
-											href={getCourseDatabaseUrl(course.courseCode)}
-											target="_blank"
-											rel="noreferrer"
-											onclick={(event) => event.stopPropagation()}
-										>
-											{getCourseDisplayCode(course)}
-										</a>
-									</strong>
-								{/if}
-								{#if !isSyntheticActivity(course) && (course.placementOptions?.length ?? 0) > 1}
-									<div
-										class="placement-switch compact"
-										aria-label={`Placement selection for ${course.courseCode}`}
-									>
-										{#each course.placementOptions ?? [] as option (option.id)}
-											<button
-												type="button"
-												class:selected-option={(selectedPlacementByCourseCode[course.courseCode] ??
-													course.selectedPlacementOptionId ??
-													course.placementOptions?.[0]?.id) === option.id}
-												class="placement-option compact"
-												onclick={(event) => {
-													event.stopPropagation();
-													updateSelectedPlacement(course.courseCode, option.id);
-												}}
-											>
-												{option.id}
-											</button>
-										{/each}
-									</div>
-								{/if}
-							</div>
-							<span>{course.ects ?? 'n/a'} ECTS</span>
-						</div>
-						<p>{course.title}</p>
-						<div class="chips">
-							{#if isSyntheticActivity(course)}
-								<span class="chip">{getActivityDescriptor(course)}</span>
-							{:else}
-								{#each sortTimeBlocks(shownCourseBlocks(course)) as block (block)}
-									<span class="chip">{block}</span>
-								{/each}
-							{/if}
-						</div>
-						{#if placementPickerCourseCode === course.courseCode && !hasCourse(course.courseCode)}
-							<div class="catalog-placement-popover" role="menu">
-								{#each semesters as semester (semester)}
-									<button
-										type="button"
-										role="menuitem"
-										class:current-semester={selectedSemester === semester}
-										disabled={!canPlaceCatalogCourseInSemester(course, semester)}
-										title={canPlaceCatalogCourseInSemester(course, semester)
-											? `Place in semester ${semester}`
-											: `Cannot place in semester ${semester}`}
-										onclick={(event) => {
-											event.stopPropagation();
-											void placeCourseFromPicker(course, semester);
-										}}
-									>
-										{semester}
-									</button>
-								{/each}
-							</div>
-						{/if}
-					</article>
+					{@render catalogCard(course, false)}
 				{/each}
 			</div>
 		</section>

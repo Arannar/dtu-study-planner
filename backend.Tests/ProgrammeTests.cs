@@ -55,6 +55,17 @@ internal static class ProgrammeTests
         Require(option is not null && gateway.HtmlCalls == 1 && gateway.CourseCalls == 2, "Import must fetch only the selected package and batch its uncached courses");
         Require(option!.SavedPlan.Plan.Courses.Any(c => c.Bucket == "polytechnicalFoundation"), "Imported courses must retain classified buckets");
         Require(option.SavedPlan.Plan.Courses.Single(c => c.CourseCode == "10060" && c.Semester % 2 == 0).Ects == 0, "Continuation ECTS must not double count");
+        Require(option.SavedPlan.SelectedPlacementByCourseCode["10060"] == "B", "EE package must select Physics Scheme B");
+        var physicsPlacements = option.SavedPlan.Plan.Courses.Where(c => c.CourseCode == "10060").ToList();
+        Require(physicsPlacements.All(c => c.PlacementOptionId == "B" && c.PlacementOptionLabel == "Scheme B" &&
+            c.TimeBlocks.SequenceEqual(new[] { c.Semester % 2 == 0 ? "F5B" : "E5B" })),
+            "Both Physics semesters must use Scheme B blocks");
+        var physics = (await catalogue.GetCoursesForStudyPlanAsync(2026, ["10060"])).Courses.Single();
+        Require(ProgrammeRules.ResolvePlacementOverride(new ProgrammeListItem { Code = "OTHER", Level = "bsc" }, physics) is null &&
+            ProgrammeRules.ResolvePlacementOverride(new ProgrammeListItem { Code = "ELEKTEK23", Level = "msc" }, physics) is null,
+            "Physics override must be scoped to EE BSc");
+        Require(ProgrammeRules.ResolvePlacementOverride(new ProgrammeListItem { Code = "ELEKTEK23", Level = "bsc" },
+            new CourseSummary { CourseCode = "10060" }) is null, "Do not invent Scheme B if it is absent from the catalogue");
         Require(await service.GetStudyFlowAsync(2026, "ELEKTEK23", "view-999", "da-DK") is null && gateway.HtmlCalls == 1, "Unknown option must not query arbitrary view IDs");
         var resolver = new VolumeResolver(gateway);
         Require(await resolver.ResolveAsync(null) == 2026 && await resolver.ResolveAsync(2024) == 2024, "Default volume discovery must reconcile catalogues and preserve explicit years");

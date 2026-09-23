@@ -28,7 +28,8 @@ public sealed class CoursesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] int? volume = null, [FromQuery] string? codes = null)
+    public async Task<IActionResult> Get([FromQuery] int? volume = null, [FromQuery] string? codes = null,
+        [FromQuery] bool allowHistoricalFallback = false)
     {
         var effectiveVolume = await _volumeResolver.ResolveAsync(volume);
 
@@ -45,9 +46,16 @@ public sealed class CoursesController : ControllerBase
             parsedCodes.Length,
             string.Join(",", parsedCodes));
 
-        CoursesResponse result = await _catalog.GetCoursesForStudyPlanAsync(effectiveVolume, parsedCodes);
+        CoursesResponse result = await _catalog.GetCoursesForStudyPlanAsync(effectiveVolume, parsedCodes, allowHistoricalFallback);
 
         return Ok(result);
+    }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> Search([FromQuery] CourseSearchRequest request)
+    {
+        var volume = await _volumeResolver.ResolveAsync(request.Volume);
+        return Ok(await _catalog.SearchCoursesAsync(volume, request.Query));
     }
     
 }

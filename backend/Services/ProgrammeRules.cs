@@ -3,6 +3,15 @@ namespace Planner.Backend.Services;
 
 public static class ProgrammeRules
 {
+    // Local EE rule supplied by the programme: not yet encoded in DTU's study database.
+    // Revisit when the upstream study plans carry the Physics scheme explicitly.
+    public static CoursePlacementOption? ResolvePlacementOverride(ProgrammeListItem programme, CourseSummary course) =>
+        string.Equals(programme.Code, "ELEKTEK23", StringComparison.OrdinalIgnoreCase) &&
+        string.Equals(programme.Level, "bsc", StringComparison.OrdinalIgnoreCase) &&
+        course.CourseCode == "10060"
+            ? course.PlacementOptions.FirstOrDefault(option => option.Id == "B")
+            : null;
+
     public static readonly string[] CoreVisualizationNames =
     ["Officiel visning", "Studieforløb", "Studieplan", "Ugeskema", "Kompetenceprofil", "Retningsspecifik kompetenceprofil"];
 

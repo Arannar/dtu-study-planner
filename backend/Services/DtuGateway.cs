@@ -10,10 +10,19 @@ namespace Planner.Backend.Services;
 
 public sealed class DtuGateway(DtuCache cache, IOptions<DtuOptions> options, ILogger<DtuGateway> logger) : IDtuGateway
 {
+    public Task<XmlElement> SearchCoursesAsync(AcademicYear year, string courseCode, string searchWords) =>
+        CallAsync("SearchDtuShb_Full", () => Configure(new CourseSoapClient(CourseSoapClient.EndpointConfiguration.CourseSoap12)),
+            client => client.SearchDtuShb_FullAsync(courseCode, searchWords, "", "", year.Catalogue,
+                "", "", "", "FullXML", "", "", "", "", ""));
+
     public Task<XmlElement> GetCoursesAsync(AcademicYear year, IReadOnlyCollection<string> codes) =>
         CallAsync("SearchDtuShb_Full", () => Configure(new CourseSoapClient(CourseSoapClient.EndpointConfiguration.CourseSoap12)),
             client => client.SearchDtuShb_FullAsync(string.Join(',', codes), "", "", "", year.Catalogue,
                 "", "", "", "FullXML", "", "", "", "", ""));
+
+    public Task<XmlNode> GetCourseAsync(AcademicYear year, string code) =>
+        CallAsync("GetCourse", () => Configure(new CourseSoapClient(CourseSoapClient.EndpointConfiguration.CourseSoap12)),
+            client => client.GetCourseAsync(code, year.Catalogue));
 
     public Task<Education[]> GetEducationsAsync(int volume) => cache.GetAsync($"educations:{volume}", () =>
         CallAsync("GetEducationsInVolume", VolumeClient, client => client.GetEducationsInVolumeAsync(volume)));

@@ -27,6 +27,36 @@ test('parseCourseCodes trims empty input chunks', () => {
 	assert.deepEqual(planner.parseCourseCodes(' 01001, ,02002 '), ['01001', '02002']);
 });
 
+test('basket merge preserves activities, deduplicates courses and leaves source data unchanged', () => {
+	const existing = [
+		{ courseCode: '01001', title: 'Existing', timeBlocks: [] },
+		{ courseCode: 'activity:test', title: 'Project', kind: 'activity', timeBlocks: [] }
+	];
+	const result = {
+		courseCode: '01002',
+		title: 'New',
+		timeBlocks: ['E1A'],
+		placementOptions: [
+			{ id: 'A', label: 'A', timeBlocks: ['E1A'] },
+			{ id: 'B', label: 'B', timeBlocks: ['E3A'] }
+		]
+	};
+	const merged = planner.mergeCourseSearchSelection(
+		existing,
+		[existing[0], result, result],
+		['01001', '01002'],
+		{ '01002': 'B' },
+		'99999,01001'
+	);
+	assert.equal(merged.courses.length, 3);
+	assert.equal(merged.courses[1], existing[1]);
+	assert.equal(merged.added.length, 1);
+	assert.equal(merged.added[0].selectedPlacementOptionId, 'B');
+	assert.equal(result.selectedPlacementOptionId, undefined);
+	assert.equal(merged.codesInput, '99999,01001,01002');
+	assert.equal(existing.length, 2);
+});
+
 test('semester compatibility handles ordinary and intensive blocks', () => {
 	assert.equal(planner.isSemesterCompatible(['E1A'], 1), true);
 	assert.equal(planner.isSemesterCompatible(['E1A'], 2), false);
@@ -138,9 +168,86 @@ try {
 		new Response(JSON.stringify({ detail: 'DTU is unavailable; retry.' }), { status: 503 });
 	await assert.rejects(() => plannerApi.fetchCourseBatch('2026', ['01001']), /DTU is unavailable/);
 	console.log('PASS DTU failures reject instead of returning missing course codes');
+	const originalTimeout = AbortSignal.timeout;
+	try {
+		AbortSignal.timeout = (milliseconds) => {
+			assert.equal(milliseconds, 60_000);
+			return AbortSignal.abort(new DOMException('Timed out', 'TimeoutError'));
+		};
+		globalThis.fetch = async (_url, init) => {
+			init.signal.throwIfAborted();
+		};
+		await assert.rejects(
+			() => plannerApi.fetchCourseBatch('2025', ['01001'], true),
+			/request timed out.*try loading again/
+		);
+		console.log('PASS stalled course requests time out with a retryable error');
+	} finally {
+		AbortSignal.timeout = originalTimeout;
+	}
 } finally {
 	globalThis.fetch = originalFetch;
 }
+
+// Exercise the route's real loading lifecycle with controlled pending network requests.
+const routeSource = await readFile(path.join(root, 'src/routes/+page.svelte'), 'utf8');
+const resetSource = routeSource.slice(
+	routeSource.indexOf('\tfunction resetCourseCache('),
+	routeSource.indexOf('\tfunction buildAvailableCoursesFromCodes(')
+);
+const loadSource = routeSource.slice(
+	routeSource.indexOf('\tasync function loadCourses('),
+	routeSource.indexOf('\tasync function fetchCoursesByCodes(')
+);
+const makeLoader = new Function(
+	'fetchCourseBatch',
+	ts.transpileModule(
+		`let loading = false, volume = '2025', showHosExtraInfo = true;
+		let loadedCoursesVolume = '2026', loadedCoursesWithHistoricalFallback = false;
+		let courseCacheByCode = {}, missingCourseCache = {}, status = '';
+		let courseCodesInput = '01001';
+		let availableCourses = [{ courseCode: '01001', title: 'Previous course' }, { courseCode: 'activity:project' }];
+		const parseCourseCodes = (value) => value.split(',');
+		const normalizeCourseCode = (value) => value;
+		const setStatus = (value) => { status = value; };
+		const getImportedActivities = () => availableCourses.filter(c => c.courseCode.startsWith('activity:'));
+		const buildAvailableCoursesFromCodes = (codes) => { availableCourses = [...codes.map(c => courseCacheByCode[c]).filter(Boolean), ...getImportedActivities()]; };
+		${resetSource}
+		${loadSource}
+		return { loadCourses, setVolume: value => { volume = value; }, state: () => ({ loading, availableCourses, status }) };`,
+		{ compilerOptions: { target: ts.ScriptTarget.ES2022 } }
+	).outputText
+);
+let completeRequest;
+const loader = makeLoader(() => new Promise((resolve) => (completeRequest = resolve)));
+const pendingLoad = loader.loadCourses();
+assert.equal(loader.state().loading, true);
+assert.equal(loader.state().availableCourses.length, 2);
+completeRequest({
+	courses: [{ courseCode: '01001', title: 'Updated course' }],
+	missingCourseCodes: []
+});
+await pendingLoad;
+assert.equal(loader.state().loading, false);
+assert.equal(loader.state().availableCourses[0].title, 'Updated course');
+assert.equal(loader.state().availableCourses[1].courseCode, 'activity:project');
+loader.setVolume('2024');
+const staleLoad = loader.loadCourses();
+loader.setVolume('2023');
+completeRequest({ courses: [], missingCourseCodes: ['01001'] });
+await staleLoad;
+assert.equal(loader.state().loading, false);
+assert.equal(loader.state().availableCourses.length, 2);
+const failedLoader = makeLoader(async () => {
+	throw new Error('Request timed out');
+});
+await failedLoader.loadCourses();
+assert.equal(failedLoader.state().loading, false);
+assert.equal(failedLoader.state().availableCourses.length, 2);
+assert.match(failedLoader.state().status, /Course loading failed/);
+console.log(
+	'PASS volume reload preserves courses and activities, rejects stale results, and unlocks after failure'
+);
 
 await rm(buildDir, { recursive: true, force: true });
 

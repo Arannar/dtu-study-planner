@@ -102,6 +102,11 @@ public sealed class ProgrammeService(
         var courses = await courseCatalogService.GetCoursesForStudyPlanAsync(volume, codes);
         var lookup = courses.Courses.ToDictionary(c => c.CourseCode);
         var selections = ResolvePlacementSelections(parsed, lookup);
+        foreach (var course in courses.Courses)
+        {
+            if (ProgrammeRules.ResolvePlacementOverride(programme, course) is { } placementOverride)
+                selections[course.CourseCode] = placementOverride.Id;
+        }
         return new ProgrammeStudyFlowOption
         {
             Id = option.Id, Label = option.Label, Description = option.Description, Kind = option.Kind,
@@ -111,7 +116,7 @@ public sealed class ProgrammeService(
             {
                 SavedAt = DateTimeOffset.UtcNow.ToString("O"), Volume = volume.ToString(CultureInfo.InvariantCulture),
                 ImportedCourseCodes = codes, SelectedPlacementByCourseCode = selections,
-                Plan = new StudyPlan { Courses = BuildPresetPlannedCourses(parsed, lookup, selections) }
+                Plan = new StudyPlan { Courses = BuildPresetPlannedCourses(parsed, lookup, selections, programme) }
             }
         };
     }
@@ -396,7 +401,8 @@ public sealed class ProgrammeService(
     private static List<PlannedCourse> BuildPresetPlannedCourses(
         ParsedStudyFlowPlan parsedPlan,
         IReadOnlyDictionary<string, CourseSummary> courseLookup,
-        IReadOnlyDictionary<string, string> selectedPlacementByCourseCode)
+        IReadOnlyDictionary<string, string> selectedPlacementByCourseCode,
+        ProgrammeListItem programme)
     {
         var plannedCourses = new List<PlannedCourse>();
 
@@ -427,7 +433,8 @@ public sealed class ProgrammeService(
                 PlacementOptionLabel = placementOption?.Label,
                 GradingMode = resolvedCourse.GradingMode,
                 ExaminerMode = resolvedCourse.ExaminerMode,
-                TimeBlocks = placement.TimeBlocks.Count > 0
+                TimeBlocks = placement.TimeBlocks.Count > 0 &&
+                    ProgrammeRules.ResolvePlacementOverride(programme, resolvedCourse) is null
                     ? placement.TimeBlocks
                     : ResolveFallbackTimeBlocks(resolvedCourse, placement.Semester, placementOption)
             });

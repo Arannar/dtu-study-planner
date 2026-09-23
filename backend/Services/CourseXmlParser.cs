@@ -315,7 +315,9 @@ public static class CourseXmlParser
             });
         }
 
-        return options;
+        // Historical descriptions can repeat the same schemes in dated sections.
+        // A scheme ID identifies one selectable option; preserve its first definition.
+        return options.DistinctBy(option => option.Id, StringComparer.OrdinalIgnoreCase).ToList();
     }
 
     private static List<string> ParseExplicitScheduleTextTimeBlocks(string? scheduleText)

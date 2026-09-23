@@ -9,6 +9,7 @@ The app runs locally and queries DTU's public course database services when live
 - Load DTU courses by course code and course-volume year.
 - Normalize course titles, ECTS, level, teaching blocks, placement options, grading mode, and examiner mode.
 - List DTU programmes and import mandatory courses or available recommended study-flow packages.
+  Automatically detected Electrical Engineering BSc (`ELEKTEK23`) study-flow packages select Physics (`10060`) Scheme B for both semesters. This local programme rule lives in `backend/Services/ProgrammeRules.cs` until it is represented in the DTU study database.
 - Drag courses between semesters and inspect weekly teaching-block conflicts.
 - Add synthetic activities such as projects, internships, theses, and special courses.
 - Validate semester parity, overlapping teaching blocks, programme ECTS buckets, and selected BSc/MSc elective restrictions.
@@ -142,7 +143,7 @@ Azure Container Apps is a natural later upgrade path if the project needs strong
 
 ## DTU Data Loading
 
-Course imports use batched full-XML search for the exact academic year (`2026` becomes `2026/2027` at the course-service boundary). Course and shared programme metadata caches avoid repeated requests. Programme definitions return lightweight study-flow options; selecting an option loads only that package. Upstream failures return HTTP 503 rather than incorrectly marking courses as missing.
+Course and study volume fields are shown when **Show HoS extra info** is enabled. In that mode, an empty course-search batch falls back to individual `GetCourse` lookups for the exact course volume (`allowHistoricalFallback=true` on `/api/courses`). Course imports use batched full-XML search for the exact academic year (`2026` becomes `2026/2027` at the course-service boundary). Course and shared programme metadata caches avoid repeated requests. Programme definitions return lightweight study-flow options; selecting an option loads only that package. Upstream failures return HTTP 503 rather than incorrectly marking courses as missing.
 
 Batch size, cache retention, cache capacity, and SOAP timeouts are configurable in the `Dtu` section of `backend/appsettings.json`. Defaults are 25 courses per batch, 2,048 cache entries, 60-minute data retention, five-minute missing-course retention, and 30-second operation timeouts. Caches are local to each server process.
 

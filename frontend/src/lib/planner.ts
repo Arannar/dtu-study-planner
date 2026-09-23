@@ -29,6 +29,40 @@ export type CoursePlacementOption = {
 	timeBlocks: string[];
 };
 
+export function mergeCourseSearchSelection(
+	existing: CourseSummary[],
+	results: CourseSummary[],
+	selectedCodes: string[],
+	placements: Record<string, string>,
+	codesInput: string
+) {
+	const known = new Set(existing.map((course) => course.courseCode));
+	const selected = new Set(selectedCodes);
+	const added: CourseSummary[] = [];
+	for (const course of results) {
+		if (!selected.has(course.courseCode) || known.has(course.courseCode)) continue;
+		known.add(course.courseCode);
+		const placement = getSelectedPlacementOption(course, placements[course.courseCode]);
+		added.push({ ...course, selectedPlacementOptionId: placement?.id });
+	}
+	const courses = [...existing, ...added];
+	const codes = new Set([
+		...parseCourseCodes(codesInput),
+		...courses.filter((course) => !isSyntheticActivity(course)).map((course) => course.courseCode)
+	]);
+	return { courses, added, codesInput: [...codes].join(',') };
+}
+
+export function getUniquePlacementOptions(course: CourseSummary): CoursePlacementOption[] {
+	const seen = new Set<string>();
+	return (course.placementOptions ?? []).filter((option) => {
+		const key = option.id.toUpperCase();
+		if (seen.has(key)) return false;
+		seen.add(key);
+		return true;
+	});
+}
+
 export type PlannedCourse = {
 	courseCode: string;
 	title: string;

@@ -7,7 +7,9 @@ namespace Planner.Backend.Services;
 
 public interface IDtuGateway
 {
+    Task<XmlElement> SearchCoursesAsync(AcademicYear year, string courseCode, string searchWords);
     Task<XmlElement> GetCoursesAsync(AcademicYear year, IReadOnlyCollection<string> codes);
+    Task<XmlNode> GetCourseAsync(AcademicYear year, string code);
     Task<Education[]> GetEducationsAsync(int volume);
     Task<Volume[]> GetVolumesAsync();
     Task<XmlElement> GetCatalogueVersionsAsync();
