@@ -150,11 +150,6 @@ public sealed class StudyPlanValidator : IStudyPlanValidator
         };
     }
 
-    private static double TryReadEcts(string _)
-    {
-        return 0;
-    }
-
     private static PlacementResult? ValidateSemesterParity(PlannedCourse course)
     {
         var hasFallBlocks = course.TimeBlocks.Any(block => block.StartsWith("E", StringComparison.OrdinalIgnoreCase));
@@ -361,13 +356,11 @@ public sealed class StudyPlanValidator : IStudyPlanValidator
             TotalEcts = totalEcts,
             TotalLimit = bucketLimits.TotalEcts,
             PolytechnicalFoundationLimit = bucketLimits.PolytechnicalFoundationEcts,
-            ProgrammeSpecificLimit = bucketLimits.ProgrammeSpecificEcts,
             ProjectsLimit = bucketLimits.ProjectsEcts,
             ElectivesLimit = bucketLimits.ElectivesEcts,
             MandatoryLimit = bucketLimits.MandatoryEcts ?? 0,
             InternshipLimit = bucketLimits.InternshipEcts ?? 0,
             RawPolytechnicalFoundation = rawPoly,
-            RawProgrammeSpecific = rawProgrammeSpecific,
             RawProjects = rawProjects,
             RawElectives = rawElectives,
             RawMandatory = rawMandatory,
@@ -444,13 +437,11 @@ public sealed class StudyPlanValidator : IStudyPlanValidator
         public double TotalEcts { get; init; }
         public double TotalLimit { get; init; }
         public double PolytechnicalFoundationLimit { get; init; }
-        public double ProgrammeSpecificLimit { get; init; }
         public double ProjectsLimit { get; init; }
         public double ElectivesLimit { get; init; }
         public double MandatoryLimit { get; init; }
         public double InternshipLimit { get; init; }
         public double RawPolytechnicalFoundation { get; init; }
-        public double RawProgrammeSpecific { get; init; }
         public double RawProjects { get; init; }
         public double RawElectives { get; init; }
         public double RawMandatory { get; init; }

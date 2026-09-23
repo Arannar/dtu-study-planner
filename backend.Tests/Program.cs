@@ -6,7 +6,9 @@ var tests = new (string Name, Action Test)[]
     ("rejects fall course in even semester", RejectsFallCourseInEvenSemester),
     ("detects semester teaching block overlap", DetectsSemesterTeachingBlockOverlap),
     ("allows approved MSc elective in BSc plan", AllowsApprovedMscElectiveInBscPlan),
-    ("detects programme elective overflow", DetectsProgrammeElectiveOverflow)
+    ("detects programme elective overflow", DetectsProgrammeElectiveOverflow),
+    ("batch course retrieval, normalization, caching and failures", () => CatalogTests.Run().GetAwaiter().GetResult()),
+    ("programme discovery, lazy imports, classification and HTML parsing", () => ProgrammeTests.Run().GetAwaiter().GetResult())
 };
 
 var failed = 0;

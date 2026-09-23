@@ -5,6 +5,7 @@ import {
 	type PlacementResult,
 	type ProgrammeDefinitionResponse,
 	type ProgrammeListResponse,
+	type ProgrammeStudyFlowOption,
 	type StudyPlan
 } from './planner';
 
@@ -22,7 +23,7 @@ export async function postJson<T>(path: string, body: unknown): Promise<T> {
 		body: JSON.stringify(body)
 	});
 
-	if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+	await ensureSuccess(response);
 	return (await response.json()) as T;
 }
 
@@ -33,13 +34,13 @@ export async function fetchCourseBatch(volume: string, codes: string[]): Promise
 
 	const query = new URLSearchParams({ codes: codes.join(','), volume });
 	const response = await fetch(`${API_BASE_URL}/api/courses?${query.toString()}`);
-	if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+	await ensureSuccess(response);
 	return (await response.json()) as CoursesResponse;
 }
 
 export async function fetchProgrammes(volume: number): Promise<ProgrammeListResponse> {
 	const response = await fetch(`${API_BASE_URL}/api/programmes?volume=${volume}`);
-	if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+	await ensureSuccess(response);
 	return (await response.json()) as ProgrammeListResponse;
 }
 
@@ -52,7 +53,7 @@ export async function fetchProgrammeDefinition(
 	const response = await fetch(
 		`${API_BASE_URL}/api/programmes/${encodeURIComponent(programmeCode)}/definition?${query.toString()}`
 	);
-	if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
+	await ensureSuccess(response);
 	return (await response.json()) as ProgrammeDefinitionResponse;
 }
 
@@ -76,4 +77,28 @@ export function validatePlacement(
 		candidate,
 		...context
 	});
+}
+
+async function ensureSuccess(response: Response): Promise<void> {
+	if (response.ok) return;
+	const problem = await response.json().catch(() => null);
+	throw new Error(
+		typeof problem?.detail === 'string'
+			? problem.detail
+			: `HTTP ${response.status} ${response.statusText}`
+	);
+}
+
+export async function fetchStudyFlow(
+	programmeCode: string,
+	optionId: string,
+	volume: number,
+	language = 'da-DK'
+): Promise<ProgrammeStudyFlowOption> {
+	const query = new URLSearchParams({ volume: String(volume), language });
+	const response = await fetch(
+		`${API_BASE_URL}/api/programmes/${encodeURIComponent(programmeCode)}/study-flows/${encodeURIComponent(optionId)}?${query}`
+	);
+	await ensureSuccess(response);
+	return (await response.json()) as ProgrammeStudyFlowOption;
 }

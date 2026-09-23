@@ -2,6 +2,8 @@ export type GradingMode = 'graded' | 'passFail' | 'unknown';
 export type ExaminerMode = 'external' | 'internal' | 'unknown';
 
 export type CourseSummary = {
+	sourceVolume?: string | null;
+	dataWarnings?: string[];
 	courseCode: string;
 	title: string;
 	courseLevel?: string;
@@ -129,17 +131,17 @@ export type ProgrammeMandatoryCourse = {
 	course: CourseSummary;
 };
 
-export type ProgrammeStudyFlowOption = {
+export type ProgrammeStudyFlowDescriptor = {
 	id: string;
 	label: string;
 	description: string;
 	kind: string;
 	visualizationId?: number;
 	visualizationGuid?: string;
-	savedPlan: SavedStudyPlan;
 };
 
 export type ProgrammeDefinitionResponse = {
+	classificationVolume?: number | null;
 	volume: number;
 	resolvedVolume: number;
 	language: string;
@@ -148,7 +150,7 @@ export type ProgrammeDefinitionResponse = {
 	mandatoryCourses: ProgrammeMandatoryCourse[];
 	visualizations: ProgrammeVisualizationReference[];
 	recommendedStudyPackageViews: ProgrammeVisualizationReference[];
-	studyFlowOptions: ProgrammeStudyFlowOption[];
+	studyFlowOptions: ProgrammeStudyFlowDescriptor[];
 	approvedMscElectiveCourseCodes: string[];
 	missingCourseCodes: string[];
 	notes: string[];
@@ -371,3 +373,8 @@ export function isSyntheticActivity(
 ): boolean {
 	return course.kind === 'activity';
 }
+
+export type ProgrammeStudyFlowOption = ProgrammeStudyFlowDescriptor & {
+	savedPlan: SavedStudyPlan;
+	missingCourseCodes: string[];
+};

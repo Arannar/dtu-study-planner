@@ -135,9 +135,18 @@ Azure Container Apps is a natural later upgrade path if the project needs strong
 - `GET /api/courses?volume=2026&codes=01001,02002`
 - `GET /api/programmes?volume=2026`
 - `GET /api/programmes/{code}/definition?volume=2026&language=da-DK`
+- `GET /api/programmes/{code}/study-flows/{optionId}?volume=2026&language=da-DK`
 - `POST /api/planner/validate-placement`
 - `POST /api/planner/validate-semester`
 - `POST /api/planner/validate-plan`
+
+## DTU Data Loading
+
+Course imports use batched full-XML search for the exact academic year (`2026` becomes `2026/2027` at the course-service boundary). Course and shared programme metadata caches avoid repeated requests. Programme definitions return lightweight study-flow options; selecting an option loads only that package. Upstream failures return HTTP 503 rather than incorrectly marking courses as missing.
+
+Batch size, cache retention, cache capacity, and SOAP timeouts are configurable in the `Dtu` section of `backend/appsettings.json`. Defaults are 25 courses per batch, 2,048 cache entries, 60-minute data retention, five-minute missing-course retention, and 30-second operation timeouts. Caches are local to each server process.
+
+See [the backend source reference](backend/BACKEND.md) for file/class descriptions, active DTU operations, and known limitations. Archived course years are not silently replaced with newer or older course data.
 
 ## Notes And Limitations
 

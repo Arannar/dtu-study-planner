@@ -1,0 +1,301 @@
+<root>
+  <Course CourseCode="01001" Volume="2026/2027" University="dtu" LastUpdated="2026-03-17+01:00">
+    <Point PointType="ECTS">10</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Matematik 1a (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Mathematics 1a (Polytechnical foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Kurset udbydes på to forskellige skemaplaceringer afhængig af bachelorlinje. Skema A: E1A, E2.  Skema B: E3A, E4." />
+      <Schedule_Txt Lang="en-GB" Txt="Course is given in two different schedules dependent on BSc programme.&#xD;&#xA;Scheme A: E1A, E2, Scheme B: E3A, E4." />
+      <Schedule ScheduleKey="E" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="01002" Volume="2026/2027" University="dtu" LastUpdated="2026-03-26+01:00">
+    <Point PointType="ECTS">10</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Matematik 1b (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Mathematics 1b (Polytechnical foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Kurset udbydes på to forskellige skemaplaceringer. Skema A: F1A, F2 Skema B: F3A, F4" />
+      <Schedule_Txt Lang="en-GB" Txt="Course is given in two different schedules dependent on study programme.&#xD;&#xA;Scheme A: F1A, F2 Scheme B: F3A, F4" />
+      <Schedule ScheduleKey="F" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="01035" University="dtu" LastUpdated="2026-03-26+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Matematik 2" />
+    <Title Lang="en-GB" Title="Advanced Engineering Mathematics 2" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Den engelske udgave (01034) ligger også om efteråret i skemagruppe 1A.&#xD;&#xA;I august versionen (kursus 01037) dækkes fuld pensum i 3-ugers perioden på dansk" />
+      <Schedule_Txt Lang="en-GB" Txt="The English version (01034) is also in the fall in schedule 1A.&#xD;&#xA;In the August version (course 01037) the full curriculum is covered in Danish during the 3 weeks period." />
+      <Schedule ScheduleKey="E2B" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="02002" Volume="2026/2027" University="dtu" LastUpdated="2026-03-25+01:00">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Programmering (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Computer Programming (Polytechnical Foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="E1B" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CourseCode="02138" University="dtu" LastUpdated="2026-07-22+02:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Digital elektronik 1" />
+    <Title Lang="en-GB" Title="Digital Electronics 1" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="E4B" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CourseCode="02139" University="dtu" LastUpdated="2026-03-18+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Digital Elektronik 2" />
+    <Title Lang="en-GB" Title="Digital Electronics 2" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="F1B" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="02402" University="dtu" LastUpdated="2026-03-26+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Statistik (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Statistics (Polytechnical Foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="E3A" SortID="0" />
+    </Class_Schedule>
+    <Class_Schedule SortID="2">
+      <Schedule ScheduleKey="F4A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CourseCode="02451" University="dtu" LastUpdated="2026-03-26+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Introduktion til machine learning" />
+    <Title Lang="en-GB" Title="Introduction to Machine Learning" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="F4A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="10060" University="dtu" LastUpdated="2026-07-28+02:00" Volume="2026/2027">
+    <Point PointType="ECTS">10</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Fysik (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Physics (Polytechnical Foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Kurset udbydes på fire forskellige skemaplaceringer afhængig af bachelorlinje.&#xD;&#xA;Skema A: F1A og E1A. Skema B:F5B og E5B. Skema C:F1B og E1B. Skema D: F3A og E3A.&#xD;&#xA;Skema D undervisningen er på engelsk og er rettet mod General Engineering,&#xD;&#xA;men andre kan også følge skemaet hvis der er plads.&#xD;&#xA;Der er eksperimenter i kurset, der ligger uden for kursets skemagrupper." />
+      <Schedule_Txt Lang="en-GB" Txt="The course is given in four different schedules dependent on study programme.&#xD;&#xA;Scheme A: F1A and E1A. Scheme B: F5B and E5B. Scheme C: F1B and E1B.&#xD;&#xA;Scheme D: F3A and E3A.&#xD;&#xA;Schema D is taught in English and is for General Engineering but can be followed by others if there is room.&#xD;&#xA;In the course there are experiments which are placed outside the course modules." />
+      <Schedule ScheduleKey="F" SortID="0" />
+      <Schedule ScheduleKey="E" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="22050" University="dtu" LastUpdated="2026-03-02+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Signaler og lineære systemer i kontinuert  tid" />
+    <Title Lang="en-GB" Title="Continuous time signals and linear systems" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="F3A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="22051" University="dtu" LastUpdated="2026-02-24+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Signaler og lineære systemer i diskret tid" />
+    <Title Lang="en-GB" Title="Signals and linear systems in discrete time" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="E1B" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="26020" Volume="2026/2027" University="dtu" LastUpdated="2026-05-01+02:00">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Kemi (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Chemistry (Polytechnical Foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="E1A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="27020" Volume="2026/2027" University="dtu" LastUpdated="2026-08-06+02:00">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Bioengineering (Polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Bioengineering (Polytechnical Foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Kurset udbydes to gange årligt" />
+      <Schedule_Txt Lang="en-GB" Txt="Course is offered twice yearly" />
+      <Schedule ScheduleKey="E2A" SortID="0" />
+      <Schedule ScheduleKey="F2A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="30010" University="dtu" LastUpdated="2026-04-29+02:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Programmeringsprojekt" />
+    <Title Lang="en-GB" Title="Programming Project" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Kurset i januar er forbeholdt studerende fra bacheloruddannelsen i Elektroteknologi og Geofysik og Rumteknologi" />
+      <Schedule_Txt Lang="en-GB" Txt="The course in January is reserved for students from the Electrotechnology and Earth and Space Physics and Engineering bachelor programmes." />
+      <Schedule ScheduleKey="January" SortID="0" />
+      <Schedule ScheduleKey="June" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="30400" University="dtu" LastUpdated="2025-03-31+02:00" Volume="2026/2027">
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Point PointType="ECTS">10</Point>
+    <Title Lang="da-DK" Title="Elektromagnetisme" />
+    <Title Lang="en-GB" Title="Electromagnetics" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Laboratorieøvelser kan ikke afvikles inden for modul E1 og vil derfor blive udbudt i flere andre moduler.&#xD;&#xA;Helhedsvurdering." />
+      <Schedule_Txt Lang="en-GB" Txt="Laboratory exercises cannot be conducted within module E1 and will thus be offered in several other modules.&#xD;&#xA;Overall assessment." />
+      <Schedule ScheduleKey="E1" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CourseCode="34600" University="dtu" LastUpdated="2025-03-19+01:00" Volume="2026/2027">
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Point PointType="ECTS">5</Point>
+    <Title Lang="da-DK" Title="Elektriske kredsløb 1" />
+    <Title Lang="en-GB" Title="Electric circuits 1" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Laboratorieøvelser er placeret i skemagruppe E4A eller E3B." />
+      <Schedule_Txt Lang="en-GB" Txt="Laboratory exercises  take place in module E4A or E3B." />
+      <Schedule ScheduleKey="E3A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CourseCode="34601" University="dtu" LastUpdated="2026-04-04+02:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Elektriske kredsløb 2" />
+    <Title Lang="en-GB" Title="Electric circuits 2" />
+    <Class_Schedule SortID="1">
+      <Schedule_Txt Lang="da-DK" Txt="Det er muligt, at obligatoriske øvelser ligger udenfor skemaet - afhængig af, hvordan studiegrupperne organiserer deres læring" />
+      <Schedule_Txt Lang="en-GB" Txt="Mandatory exercises might be scheduled outside the scheme - dependent on how the study groups organise their work." />
+      <Schedule ScheduleKey="F4A" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_BESTAEET" />
+    </Examination>
+  </Course>
+  <Course CourseCode="34602" University="dtu" LastUpdated="2026-04-01+02:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Ingeniørarbejde - Elektroteknologi" />
+    <Title Lang="en-GB" Title="Engineering practices - Electrotechnology" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="June" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_BESTAEET" />
+    </Examination>
+  </Course>
+  <Course CourseCode="34720" University="dtu" LastUpdated="2026-03-25+01:00" Volume="2026/2027">
+    <Point PointType="ECTS">10</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Fagprojekt - Elektroteknologi" />
+    <Title Lang="en-GB" Title="Introductory project - Electrotechnology" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="F2A" SortID="0" />
+      <Schedule ScheduleKey="June" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="34721" University="dtu" LastUpdated="2026-06-22+02:00" Volume="2026/2027">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Reguleringsteknik 1" />
+    <Title Lang="en-GB" Title="Linear control design 1" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="E5B" SortID="0" />
+      <Schedule ScheduleKey="F5B" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_EXTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_7Skala" />
+    </Examination>
+  </Course>
+  <Course CourseCode="42620" Volume="2026/2027" University="dtu" LastUpdated="2026-06-18+02:00">
+    <Point PointType="ECTS">5</Point>
+    <CBS_Programme_Level CBS_Programme_LevellKey="DTU_BSC" />
+    <Title Lang="da-DK" Title="Videnskab, Teknologi og Samfund (polyteknisk grundlag)" />
+    <Title Lang="en-GB" Title="Science, Technology and Society (Polytechnical Foundation)" />
+    <Class_Schedule SortID="1">
+      <Schedule ScheduleKey="January" SortID="0" />
+    </Class_Schedule>
+    <Examination ExaminationSortID="0" Show="true">
+      <Evaluation EvaluationKey="GLOB_INTERN" />
+      <Marking_Scale Marking_ScaleKey="GLOB_BESTAEET" />
+    </Examination>
+  </Course>
+</root>

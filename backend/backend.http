@@ -1,6 +1,14 @@
 @backend_HostAddress = http://localhost:5140
 
-GET {{backend_HostAddress}}/weatherforecast/
+GET {{backend_HostAddress}}/api/courses?volume=2026&codes=01001,10060,99999
 Accept: application/json
 
 ###
+
+GET {{backend_HostAddress}}/api/programmes/ELEKTEK23/definition?volume=2026&language=da-DK
+Accept: application/json
+
+### Use an option ID returned by the programme definition.
+
+GET {{backend_HostAddress}}/api/programmes/ELEKTEK23/study-flows/view-5302?volume=2026&language=da-DK
+Accept: application/json

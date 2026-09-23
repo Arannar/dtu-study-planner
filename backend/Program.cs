@@ -1,8 +1,5 @@
 using System.Diagnostics;
 using Planner.Backend.Services;
-using Planner.Backend.Soap.Courseblocks;
-using Planner.Backend.Soap.Visualizations;
-using Planner.Backend.Soap.Volumes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,24 +36,34 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddScoped<CourseSoapClient>(sp =>
-    new CourseSoapClient(CourseSoapClient.EndpointConfiguration.CourseSoap12));
-builder.Services.AddScoped<VolumeServiceClient>(sp =>
-    new VolumeServiceClient(VolumeServiceClient.EndpointConfiguration.BasicHttpBinding_IVolumeService));
-builder.Services.AddScoped<VisualizationServiceClient>(sp =>
-    new VisualizationServiceClient(VisualizationServiceClient.EndpointConfiguration.BasicHttpBinding_IVisualizationService));
-builder.Services.AddScoped<CourseblockServiceClient>(sp =>
-    new CourseblockServiceClient(CourseblockServiceClient.EndpointConfiguration.BasicHttpBinding_ICourseblockService));
-
+builder.Services.AddOptions<DtuOptions>().BindConfiguration("Dtu")
+    .Validate(o => o.CourseBatchSize is >= 1 and <= 100 && o.CacheEntries >= 64 &&
+        o.CacheMinutes > 0 && o.MissingCacheMinutes > 0 && o.TimeoutSeconds is >= 1 and <= 120,
+        "Invalid DTU batch, cache, or timeout settings.").ValidateOnStart();
+builder.Services.AddSingleton<DtuCache>();
+builder.Services.AddScoped<IDtuGateway, DtuGateway>();
 builder.Services.AddScoped<ICourseCatalogService, CourseCatalogService>();
 builder.Services.AddSingleton<IStudyPlanValidator, StudyPlanValidator>();
-builder.Services.AddSingleton<IVolumeResolver, VolumeResolver>();
+builder.Services.AddScoped<IVolumeResolver, VolumeResolver>();
 builder.Services.AddScoped<IProgrammeVisualizationService, ProgrammeVisualizationService>();
 builder.Services.AddScoped<IGenericStudyFlowPresetLoader, GenericStudyFlowPresetLoader>();
 builder.Services.AddScoped<IProgrammeService, ProgrammeService>();
+builder.Services.AddScoped<IProgrammeClassificationService, ProgrammeClassificationService>();
 
 var app = builder.Build();
 
+app.Use(async (context, next) =>
+{
+    try { await next(context); }
+    catch (DtuUnavailableException ex)
+    {
+        await Results.Problem(statusCode: 503, title: "DTU is temporarily unavailable", detail: ex.Message).ExecuteAsync(context);
+    }
+    catch (ArgumentException ex)
+    {
+        await Results.Problem(statusCode: 400, title: "Invalid request", detail: ex.Message).ExecuteAsync(context);
+    }
+});
 app.UseCors("frontend");
 app.UseDefaultFiles();
 app.UseStaticFiles();

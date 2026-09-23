@@ -15,6 +15,7 @@ await transpileLibModule('planner.ts', 'planner.mjs', (source) =>
 		"export const API_BASE_URL = '';"
 	)
 );
+await transpileLibModule('planner-api.ts', 'planner-api.mjs', rewriteLocalImports);
 await transpileLibModule('planner-ui.ts', 'planner-ui.mjs', rewriteLocalImports);
 await transpileLibModule('planner-save.ts', 'planner-save.mjs', rewriteLocalImports);
 
@@ -110,6 +111,36 @@ test('requirement bars resolve BSc buckets and elective overflow', () => {
 	assert.equal(projects?.overflowed, true);
 	assert.equal(electives?.effectiveCapacity, 40);
 });
+
+const plannerApi = await import(pathToFileUrl(path.join(buildDir, 'planner-api.mjs')));
+const originalFetch = globalThis.fetch;
+try {
+	let requestedUrl = '';
+	globalThis.fetch = async (url) => {
+		requestedUrl = String(url);
+		return new Response(
+			JSON.stringify({
+				id: 'view-5302',
+				savedPlan: { plan: { courses: [] } },
+				missingCourseCodes: []
+			}),
+			{ status: 200 }
+		);
+	};
+	const option = await plannerApi.fetchStudyFlow('ELEKTEK23', 'view-5302', 2026);
+	assert.equal(
+		requestedUrl,
+		'/api/programmes/ELEKTEK23/study-flows/view-5302?volume=2026&language=da-DK'
+	);
+	assert.equal(option.savedPlan.plan.courses.length, 0);
+	console.log('PASS on-demand study-flow request uses the selected programme, option and volume');
+	globalThis.fetch = async () =>
+		new Response(JSON.stringify({ detail: 'DTU is unavailable; retry.' }), { status: 503 });
+	await assert.rejects(() => plannerApi.fetchCourseBatch('2026', ['01001']), /DTU is unavailable/);
+	console.log('PASS DTU failures reject instead of returning missing course codes');
+} finally {
+	globalThis.fetch = originalFetch;
+}
 
 await rm(buildDir, { recursive: true, force: true });
 

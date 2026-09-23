@@ -29,4 +29,15 @@ public sealed class ProgrammesController : ControllerBase
         var definition = await _programmeService.GetProgrammeDefinitionAsync(volume, code, language);
         return definition is null ? NotFound() : Ok(definition);
     }
+
+    [HttpGet("{code}/study-flows/{optionId}")]
+    public async Task<IActionResult> GetStudyFlow(string code, string optionId, [FromQuery] int volume,
+        [FromQuery] string language = "da-DK")
+    {
+        var option = await _programmeService.GetStudyFlowAsync(volume, code, optionId, language);
+        return option is null
+            ? Problem(statusCode: 404, title: "Study flow unavailable",
+                detail: "This option has no available semester placements for the selected programme and year. Choose another package or the generic plan.")
+            : Ok(option);
+    }
 }

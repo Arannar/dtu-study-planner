@@ -28,13 +28,14 @@ public sealed class ProgrammeDefinitionResponse
     public int Volume { get; init; }
     public int ResolvedVolume { get; init; }
     public string Language { get; init; } = "";
+    public int? ClassificationVolume { get; init; }
     public required ProgrammeListItem Programme { get; init; }
     public ProgrammeBucketLimits? BucketLimits { get; init; }
     public List<ProgrammeMandatoryCourse> MandatoryCourses { get; init; } = [];
     public List<string> ApprovedMscElectiveCourseCodes { get; init; } = [];
     public List<ProgrammeVisualizationReference> Visualizations { get; init; } = [];
     public List<ProgrammeVisualizationReference> RecommendedStudyPackageViews { get; init; } = [];
-    public List<ProgrammeStudyFlowOption> StudyFlowOptions { get; init; } = [];
+    public List<ProgrammeStudyFlowDescriptor> StudyFlowOptions { get; init; } = [];
     public List<string> MissingCourseCodes { get; init; } = [];
     public List<string> Notes { get; init; } = [];
 }
@@ -65,7 +66,7 @@ public sealed class ProgrammeVisualizationReference
     public Guid Guid { get; init; }
 }
 
-public sealed class ProgrammeStudyFlowOption
+public class ProgrammeStudyFlowDescriptor
 {
     public string Id { get; init; } = "";
     public string Label { get; init; } = "";
@@ -73,7 +74,12 @@ public sealed class ProgrammeStudyFlowOption
     public string Kind { get; init; } = "";
     public int? VisualizationId { get; init; }
     public Guid? VisualizationGuid { get; init; }
+}
+
+public sealed class ProgrammeStudyFlowOption : ProgrammeStudyFlowDescriptor
+{
     public required SavedStudyPlanDto SavedPlan { get; init; }
+    public List<string> MissingCourseCodes { get; init; } = [];
 }
 
 public sealed class SavedStudyPlanDto

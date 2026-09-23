@@ -3,6 +3,8 @@ namespace Planner.Backend.Models;
 public sealed class CourseSummary
 {
     public string CourseCode { get; init; } = "";
+    public string? SourceVolume { get; init; }
+    public List<string> DataWarnings { get; init; } = [];
     public string Title { get; init; } = "";
     public string? CourseLevel { get; init; }
     public double? Ects { get; init; }

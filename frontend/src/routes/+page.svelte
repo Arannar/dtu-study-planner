@@ -34,6 +34,7 @@
 	import {
 		fetchCourseBatch as fetchCourseBatchFromApi,
 		fetchProgrammeDefinition,
+		fetchStudyFlow,
 		fetchProgrammes,
 		validatePlacement,
 		validatePlan
@@ -1264,8 +1265,20 @@
 		loading = true;
 
 		try {
+			const definition = selectedProgrammeDefinition;
+			const loadedOption = await fetchStudyFlow(
+				definition.programme.code,
+				selectedOption.id,
+				definition.volume,
+				definition.language
+			);
+			if (
+				selectedProgrammeDefinition !== definition ||
+				selectedStudyFlowOptionId !== studyFlowOptionId
+			)
+				return;
 			const { missingCourseCodes, placedCourseCount } = await applySavedPlan(
-				selectedOption.savedPlan
+				loadedOption.savedPlan
 			);
 			setStatus(
 				missingCourseCodes.length > 0

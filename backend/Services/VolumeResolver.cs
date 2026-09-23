@@ -1,26 +1,23 @@
+using System.Xml;
 namespace Planner.Backend.Services;
 
-public sealed class VolumeResolver : IVolumeResolver
+public sealed class VolumeResolver(IDtuGateway gateway) : IVolumeResolver
 {
-    private readonly ILogger<VolumeResolver> _logger;
-
-    public VolumeResolver(ILogger<VolumeResolver> logger)
+    public async Task<int> ResolveAsync(int? requestedVolume)
     {
-        _logger = logger;
-    }
-
-    public Task<int> ResolveAsync(int? requestedVolume)
-    {
-        if (requestedVolume.HasValue)
-        {
-            return Task.FromResult(requestedVolume.Value);
-        }
-
-        // First simple version:
-        // default to the calendar year
-        var fallback = DateTime.Now.Year;
-        _logger.LogInformation("No volume specified. Falling back to current year {Volume}", fallback);
-
-        return Task.FromResult(fallback);
+        if (requestedVolume is int explicitYear) return new AcademicYear(explicitYear).StartYear;
+        var catalogues = await gateway.GetCatalogueVersionsAsync();
+        var settings = catalogues.SelectNodes("descendant-or-self::*[local-name()='VolumeSetting']")!.OfType<XmlElement>()
+            .Select(node => new { Text = node.GetAttribute("Volume"), Preferred = node.GetAttribute("Preferred") == "1" })
+            .Where(item => System.Text.RegularExpressions.Regex.IsMatch(item.Text, @"^\d{4}/\d{4}$"))
+            .Select(item => new { Year = int.Parse(item.Text[..4]), item.Preferred }).ToList();
+        var volumes = await gateway.GetVolumesAsync();
+        var available = settings.Where(item => volumes.Any(v => v.Year == item.Year && v.Active)).ToList();
+        var preferred = available.OrderByDescending(item => item.Preferred)
+            .ThenByDescending(item => volumes.Any(v => v.Year == item.Year && v.Current))
+            .ThenByDescending(item => item.Year).FirstOrDefault();
+        if (preferred is null)
+            throw new DtuUnavailableException("default academic-year discovery", new InvalidOperationException("No shared published catalogue and active programme volume was found."));
+        return new AcademicYear(preferred.Year).StartYear;
     }
 }
